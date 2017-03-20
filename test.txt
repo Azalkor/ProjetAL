@@ -1,1 +1,5 @@
 coucou
+
+pattern/fonctionnalitée:
+1: fabrique
+2: composite
