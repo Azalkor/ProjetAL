@@ -1,5 +1,5 @@
 package model;
 
-public class Polygone {
-
+public class Polygone extends AbstractShape{
+	private float 
 }

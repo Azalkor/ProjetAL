@@ -1,11 +1,15 @@
 package model;
 
-import java.util.ArrayList;
-
 import com.sun.javafx.geom.Vec2d;
 
-public class ShapeGroup implements Shape{
-	private ArrayList<Shape> shapes;
+import javafx.geometry.Point2D;
+import javafx.scene.paint.Color;
+
+public class AbstractShape implements Shape{
+	
+	private Point2D position;
+	private Point2D centreRotation;
+	private Color couleur;
 
 	@Override
 	public void rotation(float deg) {
@@ -18,4 +22,5 @@ public class ShapeGroup implements Shape{
 		// TODO Auto-generated method stub
 		
 	}
+
 }

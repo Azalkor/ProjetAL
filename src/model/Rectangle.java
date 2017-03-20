@@ -1,5 +1,5 @@
 package model;
 
-public class Rectangle {
+public class Rectangle extends AbstractShape{
 
 }
