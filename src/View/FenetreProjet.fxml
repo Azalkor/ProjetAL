@@ -5,6 +5,7 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.* ?>
 
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480" minWidth="800" prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
@@ -22,6 +23,7 @@
       <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+          <Rectangle fx:id="RectangleFabrique" width="40" height="40" />
         </content>
       </ScrollPane>
    </left>
