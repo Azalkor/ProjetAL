@@ -20,5 +20,10 @@ public class Rectangle extends AbstractShape{
 
 	public Rectangle(){}
 	
+	public Rectangle(float largeur, float hauteur) {
+		this.largeur = largeur;
+		this.hauteur = hauteur;
+	}
+	
 	public void arrondirBords(){}
 }

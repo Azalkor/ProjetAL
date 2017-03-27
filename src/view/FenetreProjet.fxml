@@ -5,20 +5,21 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.* ?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480" minWidth="800" prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480" minWidth="800" prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FenetreProjetController">
    <top>
       <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
-          <Button mnemonicParsing="false" text="SaveAs" />
-            <Button mnemonicParsing="false" text="Load" />
-            <Button mnemonicParsing="false" text="Undo" />
-            <Button mnemonicParsing="false" text="Redo" />
+          <Button fx:id="buttonSaveAs" mnemonicParsing="false" text="SaveAs" />
+          <Button fx:id="buttonLoad" mnemonicParsing="false" text="Load" />
+          <Button fx:id="buttonUndo" mnemonicParsing="false" text="Undo" />
+          <Button fx:id="buttonRedo" mnemonicParsing="false" text="Redo" />
         </items>
       </ToolBar>
    </top>
@@ -36,13 +37,16 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-               		<Rectangle fx:id="RectangleFabrique" width="40" height="40" GridPane.rowIndex="0" />
-                  <Button mnemonicParsing="false" text="Delete" GridPane.rowIndex="2" />
+               		<Rectangle fx:id="rectangleFabrique" width="40" height="40" GridPane.rowIndex="0" />
+                  <Button fx:id="buttonDelete" mnemonicParsing="false" text="Delete" GridPane.rowIndex="2" />
                </children>
             </GridPane>
          </content>
       </ScrollPane>
    </left>
+   <center>
+   		<Pane fx:id="dropPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
 </BorderPane>
 
 

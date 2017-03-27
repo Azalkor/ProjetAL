@@ -19,4 +19,10 @@ public class Polygone extends AbstractShape{
 	}
 	
 	public Polygone(){}
+	
+	public Polygone(int nbCotes, float longueurCotes) {
+		this.nbCotes = nbCotes;
+		this.longueurCotes = longueurCotes;
+	}
+	
 }
