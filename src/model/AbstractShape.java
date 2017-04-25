@@ -10,6 +10,12 @@ public class AbstractShape implements Shape{
 	private Point2D position;
 	private Point2D centreRotation;
 	private Color couleur;
+	
+	public AbstractShape(Point2D position, Point2D centreRotation, Color couleur) {
+		this.position = position;
+		this.centreRotation = centreRotation;
+		this.couleur = couleur;
+	}
 
 	@Override
 	public void rotation(float deg) {

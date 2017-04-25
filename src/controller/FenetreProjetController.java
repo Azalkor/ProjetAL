@@ -1,6 +1,10 @@
 package controller;
+
+import java.awt.MouseInfo;
+
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
@@ -10,6 +14,7 @@ import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import model.Model;
 
 /**
  * View-Controller for the person table.
@@ -17,6 +22,8 @@ import javafx.scene.shape.Rectangle;
  * @author Marco Jakob
  */
 public class FenetreProjetController {
+	
+	private Model model;
 	
 	@FXML
 	private Button buttonSaveAs;
@@ -38,7 +45,9 @@ public class FenetreProjetController {
 	/**
 	 * The constructor (is called before the initialize()-method).
 	 */
-	public FenetreProjetController() {}
+	public FenetreProjetController() {
+		model = new Model();
+	}
 	
 	/**
 	 * Initializes the controller class. This method is automatically called
@@ -126,6 +135,18 @@ public class FenetreProjetController {
             public void handle(DragEvent event) {
                 /* data dropped */
                 System.out.println("onDragDropped");
+                Point2D dropPos = new Point2D(event.getX()-rectangleFabrique.getWidth()/2,
+                							  event.getY()-rectangleFabrique.getHeight()/2);
+                model.CreateRect((float)rectangleFabrique.getWidth(),
+                				 (float)rectangleFabrique.getHeight(),
+                				 new Point2D(dropPos.getX(), dropPos.getY()),
+                				 new Point2D(dropPos.getX()+rectangleFabrique.getWidth()/2,
+                						 dropPos.getY()+rectangleFabrique.getHeight()/2)
+                				 ,Color.BLACK);
+                Rectangle newRect = new Rectangle(rectangleFabrique.getWidth(),rectangleFabrique.getHeight());
+                newRect.setX(dropPos.getX());
+                newRect.setY(dropPos.getY());
+                dropPane.getChildren().add(newRect);
                 /* if there is a string data on dragboard, read it and use it */
                 Dragboard db = event.getDragboard();
                 boolean success = false;
@@ -145,6 +166,7 @@ public class FenetreProjetController {
             public void handle(DragEvent event) {
                 /* the drag-and-drop gesture ended */
                 System.out.println("onDragDone");
+                
                 /* if the data was successfully moved, clear it */
                 if (event.getTransferMode() == TransferMode.MOVE) {
                 	//rectangleFabrique.setText("");

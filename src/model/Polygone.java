@@ -1,5 +1,8 @@
 package model;
 
+import javafx.geometry.Point2D;
+import javafx.scene.paint.Color;
+
 public class Polygone extends AbstractShape{
 	private int nbCotes;
 	private float longueurCotes;
@@ -18,9 +21,8 @@ public class Polygone extends AbstractShape{
 		this.longueurCotes = longueurCotes;
 	}
 	
-	public Polygone(){}
-	
-	public Polygone(int nbCotes, float longueurCotes) {
+	public Polygone(int nbCotes, float longueurCotes, Point2D pos, Point2D centreRot, Color couleur) {
+		super(pos,centreRot,couleur);
 		this.nbCotes = nbCotes;
 		this.longueurCotes = longueurCotes;
 	}
