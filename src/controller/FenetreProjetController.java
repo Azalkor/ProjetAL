@@ -1,11 +1,12 @@
 package controller;
 
-import java.awt.MouseInfo;
-
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
+import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
@@ -86,7 +87,9 @@ public class FenetreProjetController {
 		        ClipboardContent content = new ClipboardContent();
 		        content.putString("TEST");
 		        db.setContent(content);
-		        
+		        Image im;
+		        WritableImage wi =rectangleFabrique.snapshot(null, null);
+		        db.setDragView(wi);
 		        event.consume();
 		    }
 		});
@@ -135,8 +138,7 @@ public class FenetreProjetController {
             public void handle(DragEvent event) {
                 /* data dropped */
                 System.out.println("onDragDropped");
-                Point2D dropPos = new Point2D(event.getX()-rectangleFabrique.getWidth()/2,
-                							  event.getY()-rectangleFabrique.getHeight()/2);
+                Point2D dropPos = new Point2D(event.getX(), event.getY());
                 model.CreateRect((float)rectangleFabrique.getWidth(),
                 				 (float)rectangleFabrique.getHeight(),
                 				 new Point2D(dropPos.getX(), dropPos.getY()),
