@@ -15,7 +15,7 @@ public class Main extends Application {
 		primaryStage.setTitle("Projet AL1");
 
 		try {
-			FXMLLoader loader = new FXMLLoader(Main.class.getResource("../view/FenetreProjet.fxml"));
+			FXMLLoader loader = new FXMLLoader(Main.class.getResource("../view/View.fxml"));
 			Pane page = (Pane) loader.load();
 			Scene scene = new Scene(page);
 			primaryStage.setScene(scene);
