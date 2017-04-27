@@ -18,4 +18,8 @@ public class ShapeGroup implements Shape{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void addShape(Shape shape){
+		shapes.add(shape);
+	}
 }
