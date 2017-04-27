@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 public class Rectangle extends AbstractShape{
 	private float largeur;
 	private float hauteur;
+	private boolean bordsRond;
 	
 	public float getLargeur() {
 		return largeur;
@@ -25,8 +26,18 @@ public class Rectangle extends AbstractShape{
 		super(pos, centreRot, couleur);
 		this.largeur = largeur;
 		this.hauteur = hauteur;
-		
+		this.bordsRond = false;
 	}
 	
-	public void arrondirBords(){}
+	public boolean isBordRond(){
+		return bordsRond;
+	}
+	
+	public void arrondirBords(){
+		bordsRond = true;
+	}
+	
+	public void bordDroit(){
+		bordsRond = false;
+	}
 }
