@@ -25,8 +25,11 @@ public class AbstractShape implements Shape{
 
 	@Override
 	public void translation(Vec2d dir) {
-		// TODO Auto-generated method stub
-		
+		position.add(position.getX()+dir.x, position.getY()+dir.y);		
+	}
+	
+	public void changeCouleur(Color newColor) {
+		this.couleur = newColor;
 	}
 
 }

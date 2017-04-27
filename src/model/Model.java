@@ -16,4 +16,8 @@ public class Model {
 		System.out.println("largeur : "+largeur+" hauteur : "+hauteur +" posX : "+pos.getX()+" posY : "+pos.getY()+ " centreX : "+centreRot.getX()+" centreY : "+centreRot.getY());
 		group.addShape(new Rectangle(largeur, hauteur, pos, centreRot, couleur));
 	}
+	
+	public void CreatePoly(int nbCotes,int longueurCotes, Point2D pos, Point2D centreRot, Color couleur) {
+		group.addShape(new Polygone(nbCotes, longueurCotes, pos, centreRot, couleur));
+	}
 }
