@@ -1,5 +1,7 @@
 package model;
 
+import com.sun.javafx.geom.Vec2d;
+
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 
@@ -39,5 +41,19 @@ public class Rectangle extends AbstractShape{
 	
 	public void bordDroit(){
 		bordsRond = false;
+	}
+	
+	public void rotation(float angle) {
+		double dx = super.position.getX() - super.centreRotation.getX();
+		double dy = super.position.getX() - super.centreRotation.getX();;
+		double newX = super.position.getX() - dx*Math.cos(angle) + dy*Math.sin(angle);
+		double newY = super.position.getX() - dx*Math.sin(angle) - dy*Math.cos(angle);
+		super.position = new Point2D(newX, newY);
+	}
+	
+	public void translation(Vec2d dir){
+		super.translation(dir);
+		super.centreRotation = new Point2D(super.position.getX() + largeur / 2,
+				super.position.getY() + hauteur / 2);
 	}
 }
