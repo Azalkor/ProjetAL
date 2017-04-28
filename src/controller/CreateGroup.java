@@ -1,6 +1,10 @@
 package controller;
 
 import javafx.event.EventHandler;
+import javafx.geometry.Point2D;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.SnapshotParameters;
+import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
@@ -15,50 +19,47 @@ import model.ShapeGroup;
 
 public class CreateGroup {
 	
-	public static boolean isTranslating=false;
-	
-	Rectangle selectZone;
-	boolean selectStarted=false;
+	static Rectangle selectZone;
 	ShapeGroup selectedShapes = new ShapeGroup();
 	
-	public CreateGroup(Model m, Pane p){
+	public CreateGroup(Model m, Pane p, double xOffset, double yOffset){
 		
 		p.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event){
-				p.getChildren().remove(selectZone);
-				selectedShapes.getShapes().clear();
-				if(!isTranslating){
+				if(selectZone!=null){
+					if (!selectZone.contains(new Point2D(event.getX(),event.getY()))){
+						p.getChildren().remove(selectZone);
+						selectedShapes.getShapes().clear();
+					}
+					else
+						return;
+				}
+				if(!(Controller.state==5)){
+					Controller.state=3;
 					selectZone = new Rectangle(event.getX(),event.getY(),0,0);
 		            selectZone.setFill(Color.TRANSPARENT);
 		            selectZone.setStroke(Color.TRANSPARENT);
 		            selectZone.setStrokeWidth(1);
+		            selectZone.toFront();
 		            p.getChildren().addAll(selectZone);
-		            selectStarted=true;
-		            System.out.println("coucouentrer");
 				}
-				event.consume();
 			}
 		});
 		p.setOnMouseDragged(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
-				System.out.println("coucoufuck");
-				if(!isTranslating)
-					if(selectStarted){
+				if(!(Controller.state==5))
+					if(Controller.state==3){
 						System.out.println("getX : "+event.getX());
 						selectZone.setWidth(event.getX()-selectZone.getX());
 						selectZone.setHeight(event.getY()-selectZone.getY());
 			            selectZone.setStroke(Color.BLACK);
-			            System.out.println(selectZone.getWidth());
 					}
-				event.consume();
 			}
 			
 		});
 		p.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
-				System.out.println("coucou");
-				isTranslating=false;
-				selectStarted=false;
+				Controller.state=4;
 				for (Shape s : m.group.getShapes()) {
 					if(selectZone.contains(s.getCentre())){
 						selectedShapes.addShape(s);
@@ -70,22 +71,22 @@ public class CreateGroup {
 					else
 						m.group.addShape(selectedShapes.getShapes().get(0));
 				}
-				//selectZone.toBack();
 				selectZone.setOnDragDetected(new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent event) {
 						Dragboard db = selectZone.startDragAndDrop(TransferMode.ANY);
 						ClipboardContent content = new ClipboardContent();
 						content.putString("");
 						db.setContent(content);
-						WritableImage wi = p.snapshot(null, null);
+						WritableImage wi = new WritableImage((int)selectZone.getWidth(), (int)selectZone.getHeight());
+						SnapshotParameters sp = new SnapshotParameters();
+						sp.setViewport(new Rectangle2D(selectZone.getX()+xOffset,selectZone.getY()+yOffset,1000,1000));
+						p.snapshot(sp, wi);
 						db.setDragView(wi);
 						event.consume();
 					}
 				});
-				//selectZone.toBack();
 				event.consume();
 			}
-			
 		});
 	}
 }

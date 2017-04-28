@@ -14,9 +14,11 @@ import javafx.scene.shape.Rectangle;
 import model.Model;
 
 public class DragAndDrop {
+	
 	public DragAndDrop(Rectangle rectangleFabrique, Pane dropPane, Model m) {
 		rectangleFabrique.setOnDragDetected(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
+				Controller.state=1;
 				Dragboard db = rectangleFabrique.startDragAndDrop(TransferMode.ANY);
 				ClipboardContent content = new ClipboardContent();
 				content.putString("");
@@ -38,24 +40,28 @@ public class DragAndDrop {
 
 		dropPane.setOnDragDropped(new EventHandler<DragEvent>() {
 			public void handle(DragEvent event) {
-				Point2D dropPos = new Point2D(event.getX(), event.getY());
-				m.CreateRect((float) rectangleFabrique.getWidth(), (float) rectangleFabrique.getHeight(),
-						new Point2D(dropPos.getX(), dropPos.getY()),
-						new Point2D(dropPos.getX() + rectangleFabrique.getWidth() / 2,
-								dropPos.getY() + rectangleFabrique.getHeight() / 2),
-						Color.BLACK);
-				Rectangle newRect = new Rectangle(rectangleFabrique.getWidth(), rectangleFabrique.getHeight());
-				newRect.setX(dropPos.getX());
-				newRect.setY(dropPos.getY());
-				newRect.setOnMouseDragged(new EventHandler<MouseEvent>() {
-					public void handle(MouseEvent event){
-						CreateGroup.isTranslating=true;
-						newRect.setX(event.getX());
-						newRect.setY(event.getY());
-					}
-				});
-				dropPane.getChildren().add(newRect);
-				event.consume();
+				if (Controller.state!=4){
+					Controller.state=2;
+					System.out.println("carré créé");
+					Point2D dropPos = new Point2D(event.getX(), event.getY());
+					m.CreateRect((float) rectangleFabrique.getWidth(), (float) rectangleFabrique.getHeight(),
+							new Point2D(dropPos.getX(), dropPos.getY()),
+							new Point2D(dropPos.getX() + rectangleFabrique.getWidth() / 2,
+									dropPos.getY() + rectangleFabrique.getHeight() / 2),
+							Color.BLACK);
+					Rectangle newRect = new Rectangle(rectangleFabrique.getWidth(), rectangleFabrique.getHeight());
+					newRect.setX(dropPos.getX());
+					newRect.setY(dropPos.getY());
+					newRect.setOnMouseDragged(new EventHandler<MouseEvent>() {
+						public void handle(MouseEvent event){
+							Controller.state = 5;
+							newRect.setX(event.getX());
+							newRect.setY(event.getY());
+						}
+					});
+					dropPane.getChildren().add(newRect);
+					event.consume();
+				}
 			}
 		});
 	}
