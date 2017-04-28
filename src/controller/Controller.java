@@ -65,6 +65,7 @@ public class Controller {
 		});
 		
 		new DragAndDrop(rectangleFabrique,dropPane,m);
+		new CreateGroup(m, dropPane);
 	}
 	
 }
