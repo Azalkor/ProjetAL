@@ -36,10 +36,8 @@ public class AbstractShape implements Shape{
 		
 	}
 
-
 	@Override
 	public Point2D getCentre() {
 		return centreRotation;
 	}
-
 }
