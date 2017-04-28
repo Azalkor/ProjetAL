@@ -7,8 +7,8 @@ import javafx.scene.paint.Color;
 
 public class AbstractShape implements Shape{
 	
-	private Point2D position;
-	private Point2D centreRotation;
+	protected Point2D position;
+	protected Point2D centreRotation;
 	private Color couleur;
 	
 	public AbstractShape(Point2D position, Point2D centreRotation, Color couleur) {
@@ -17,11 +17,6 @@ public class AbstractShape implements Shape{
 		this.couleur = couleur;
 	}
 
-	@Override
-	public void rotation(float deg) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	@Override
 	public void translation(Vec2d dir) {
@@ -32,9 +27,19 @@ public class AbstractShape implements Shape{
 		this.couleur = newColor;
 	}
 
+	public Color getCouleur(){
+		return this.couleur;
+	}
+	
+	@Override
+	public void rotation(float deg) {
+		
+	}
+
+
 	@Override
 	public Point2D getCentre() {
-		return centreRotation;		
+		return centreRotation;
 	}
 
 }
