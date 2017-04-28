@@ -32,4 +32,9 @@ public class AbstractShape implements Shape{
 		this.couleur = newColor;
 	}
 
+	@Override
+	public Point2D getCentre() {
+		return centreRotation;		
+	}
+
 }
