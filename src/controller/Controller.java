@@ -2,6 +2,8 @@ package controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.ToolBar;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Rectangle;
 import model.Model;
@@ -14,6 +16,13 @@ import model.Model;
 public class Controller {
 	
 	Model m;
+	public static int state = 0;
+	//0 = initial
+	//1 = on drag une forme
+	//2 = shape posée
+	//3 = sélection commencée
+	//4 = sélection faite, un carré existe
+	//5 = on déplace une forme
 	
 	@FXML
 	private Button buttonSaveAs;
@@ -29,6 +38,10 @@ public class Controller {
 	private Rectangle rectangleFabrique;
 	@FXML
 	private Pane dropPane;
+	@FXML
+	private ScrollPane shapePane;
+	@FXML
+	private ToolBar toolBar;
 	
 	/**
 	 * The constructor (is called before the initialize()-method).
@@ -65,7 +78,7 @@ public class Controller {
 		});
 		
 		new DragAndDrop(rectangleFabrique,dropPane,m);
-		new CreateGroup(m, dropPane);
+		new CreateGroup(m, dropPane, shapePane.getPrefWidth(),toolBar.getPrefHeight());
 	}
 	
 }

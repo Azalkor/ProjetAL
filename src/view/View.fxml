@@ -14,7 +14,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="480" minWidth="800" prefHeight="480.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
    <top>
-      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ToolBar fx:id="toolBar" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
           <Button fx:id="buttonSaveAs" mnemonicParsing="false" text="SaveAs" />
           <Button fx:id="buttonLoad" mnemonicParsing="false" text="Load" />
@@ -24,7 +24,7 @@
       </ToolBar>
    </top>
    <left>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="shapePane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <content>
         <GridPane>
               <columnConstraints>
