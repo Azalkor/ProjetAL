@@ -8,7 +8,24 @@ import javafx.geometry.Point2D;
 
 public class ShapeGroup implements Shape{
 	private ArrayList<Shape> shapes;
+	private Shape etat;
 	
+	public void setEtat(Shape etat){
+		this.etat = etat;
+	}
+	
+	public Memento save() {
+		System.out.println("Etat Sauvegardé:\n");
+		ShapeGroup group = (ShapeGroup) etat;
+		group.liste();
+		return new Memento(etat);
+	}
+	
+	
+	public Shape restaure(Memento m) {
+		etat = m.getEtat();
+		return etat;
+	}
 	public Point2D getCentre(){
 		int i=0;
 		int x=0;
@@ -53,5 +70,13 @@ public class ShapeGroup implements Shape{
 	
 	public void addShape(Shape shape){
 		shapes.add(shape);
+	}
+	
+	public void liste(){
+		String str = new String();
+		for(Shape shape : shapes){
+			str =str + shape.toString();
+		}
+		System.out.println(str);
 	}
 }

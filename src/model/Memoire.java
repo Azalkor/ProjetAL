@@ -24,6 +24,7 @@ public class Memoire {
 	}
 
 	public Memento getMemento(int index) {
+		System.out.println("Etat censé être restauré à l'index" + index );
 		return historique.get(index);
 	}
 
@@ -31,5 +32,11 @@ public class Memoire {
 	public int getTaille(){
 		return historique.size();
 	}
-	    
+	
+	public void listHistoric(){
+		for(Memento shape : historique){
+			
+		}
+	}
+	
 }

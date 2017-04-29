@@ -66,11 +66,16 @@ public class Controller {
 		});
 		
 		buttonUndo.setOnAction((event) -> {
-			System.out.println("Button Action\n");
+			System.out.println("Liste Avant Undo\n");
+			m.Liste();
+			m.Undo();
+			System.out.println("Liste Après\n");
+			m.Liste();
 		});
 		
 		buttonRedo.setOnAction((event) -> {
 			System.out.println("Button Action\n");
+			m.Redo();
 		});
 		
 		buttonDelete.setOnAction((event) -> {

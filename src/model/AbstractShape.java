@@ -40,4 +40,13 @@ public class AbstractShape implements Shape{
 	public Point2D getCentre() {
 		return centreRotation;
 	}
+
+
+	@Override
+	public String toString() {
+		return "AbstractShape [position=" + position + ", centreRotation=" + centreRotation + ", couleur=" + couleur
+				+ "]";
+	}
+	
+	
 }

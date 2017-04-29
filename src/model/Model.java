@@ -16,6 +16,7 @@ public class Model {
 		historique = Memoire.getInstance();
 		index = -1;
 		originator = new Originator();
+		this.ActionPerformed();
 	}
 	
 	public void CreateRect(float largeur, float hauteur, Point2D pos, Point2D centreRot, Color couleur){
@@ -30,15 +31,19 @@ public class Model {
 	}
 	
 	public void ActionPerformed(){
-		originator.setEtat(group);
-		historique.addMemento(originator.save());
+		group.setEtat(group);
+		historique.addMemento(group.save());
+		System.out.println("from" + index);
 		index++;
+		System.out.println("ActionPerformed\nTo " + index + "\n");
 	}
 	
 	public void Undo(){
-		if(index > 1){
+		if(index > 0){
+			System.out.println("from" + index);
 			index--;
-			group = (ShapeGroup) originator.restaure( historique.getMemento(index) );
+			System.out.println("To" + index);
+			group = (ShapeGroup) group.restaure( historique.getMemento(index) );
 		}		
 	}
 	
@@ -47,5 +52,9 @@ public class Model {
 			index++;
 			group = (ShapeGroup) originator.restaure( historique.getMemento(index) );
 		}
+	}
+	
+	public void Liste() {
+		group.liste();
 	}
 }

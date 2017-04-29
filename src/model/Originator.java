@@ -9,6 +9,9 @@ public class Originator {
 	}
 	
 	public Memento save() {
+		System.out.println("Etat Sauvegardé:\n");
+		ShapeGroup group = (ShapeGroup) etat;
+		group.liste();
 		return new Memento(etat);
 	}
 	
