@@ -8,4 +8,6 @@ public interface Shape {
 	public Point2D getCentre();
 	public void rotation(float deg);
 	public void translation(Vec2d dir);
+	public void accept();
+	public Shape copy();
 }

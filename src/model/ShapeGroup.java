@@ -79,4 +79,19 @@ public class ShapeGroup implements Shape{
 		}
 		System.out.println(str);
 	}
+
+	@Override
+	public void accept() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Shape copy() {
+		ShapeGroup copy = new ShapeGroup();
+		for(Shape shape : shapes){
+			copy.addShape(shape);
+		}
+		return copy;
+	}
 }

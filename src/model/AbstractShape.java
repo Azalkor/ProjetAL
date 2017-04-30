@@ -47,6 +47,19 @@ public class AbstractShape implements Shape{
 		return "AbstractShape [position=" + position + ", centreRotation=" + centreRotation + ", couleur=" + couleur
 				+ "]";
 	}
+
+
+	@Override
+	public void accept() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public Shape copy() {
+		return new AbstractShape(position, centreRotation, couleur);
+	}
 	
 	
 }

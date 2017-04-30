@@ -60,4 +60,9 @@ public class Polygone extends AbstractShape{
 	return points;
 	}
 	
+	public Shape copy(){
+		Polygone copy = new Polygone(nbCotes, longueurCotes, super.position, super.centreRotation, super.getCouleur());
+		return copy;
+	}
+	
 }

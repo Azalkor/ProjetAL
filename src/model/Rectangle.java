@@ -56,4 +56,8 @@ public class Rectangle extends AbstractShape{
 		super.centreRotation = new Point2D(super.position.getX() + largeur / 2,
 				super.position.getY() + hauteur / 2);
 	}
+	
+	public Shape clone(){
+		return new Rectangle(largeur, hauteur, super.position, super.centreRotation, super.getCouleur());
+	}
 }
