@@ -23,10 +23,11 @@ public class Polygone extends AbstractShape{
 		this.longueurCotes = longueurCotes;
 	}
 	
-	public Polygone(int nbCotes, float longueurCotes, Point2D pos, Point2D centreRot, Color couleur) {
-		super(pos,centreRot,couleur);
+	public Polygone(int nbCotes, float longueurCotes, Point2D pos,  Color couleur) {
+		super(pos,couleur);
 		this.nbCotes = nbCotes;
 		this.longueurCotes = longueurCotes;
+		super.centreRotation = pos;
 	}
 	
 	public void translation(Vec2d dir){
@@ -60,8 +61,8 @@ public class Polygone extends AbstractShape{
 	return points;
 	}
 	
-	public Shape copy(){
-		Polygone copy = new Polygone(nbCotes, longueurCotes, super.position, super.centreRotation, super.getCouleur());
+	public Shape clone(){
+		Polygone copy = new Polygone(nbCotes, longueurCotes, super.position, super.getCouleur());
 		return copy;
 	}
 	

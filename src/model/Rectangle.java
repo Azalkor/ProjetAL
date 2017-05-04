@@ -24,8 +24,10 @@ public class Rectangle extends AbstractShape{
 		this.hauteur = hauteur;
 	}
 	
-	public Rectangle(float largeur, float hauteur, Point2D pos, Point2D centreRot, Color couleur) {
-		super(pos, centreRot, couleur);
+	public Rectangle(float largeur, float hauteur, Point2D pos, Color couleur) {
+		super(pos, couleur);
+		super.centreRotation = new Point2D(super.position.getX() + largeur / 2,
+				super.position.getY()+ 30 / 2);
 		this.largeur = largeur;
 		this.hauteur = hauteur;
 		this.bordsRond = false;
@@ -57,7 +59,7 @@ public class Rectangle extends AbstractShape{
 				super.position.getY() + hauteur / 2);
 	}
 	
-	public Shape clone(){
-		return new Rectangle(largeur, hauteur, super.position, super.centreRotation, super.getCouleur());
+	public Rectangle clone(){
+		return new Rectangle(largeur, hauteur, super.position,  super.getCouleur());
 	}
 }

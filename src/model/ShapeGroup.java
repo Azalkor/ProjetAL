@@ -15,7 +15,7 @@ public class ShapeGroup implements Shape{
 	}
 	
 	public Memento save() {
-		System.out.println("Etat Sauvegardé:\n");
+		System.out.println("Etat Sauvegardï¿½:\n");
 		ShapeGroup group = (ShapeGroup) etat;
 		group.liste();
 		return new Memento(etat);
@@ -87,7 +87,7 @@ public class ShapeGroup implements Shape{
 	}
 
 	@Override
-	public Shape copy() {
+	public ShapeGroup clone() {
 		ShapeGroup copy = new ShapeGroup();
 		for(Shape shape : shapes){
 			copy.addShape(shape);

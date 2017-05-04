@@ -11,9 +11,8 @@ public class AbstractShape implements Shape{
 	protected Point2D centreRotation;
 	private Color couleur;
 	
-	public AbstractShape(Point2D position, Point2D centreRotation, Color couleur) {
+	public AbstractShape(Point2D position, Color couleur) {
 		this.position = position;
-		this.centreRotation = centreRotation;
 		this.couleur = couleur;
 	}
 
@@ -57,8 +56,8 @@ public class AbstractShape implements Shape{
 
 
 	@Override
-	public Shape copy() {
-		return new AbstractShape(position, centreRotation, couleur);
+	public Shape clone() {
+		return new AbstractShape(position, couleur);
 	}
 	
 	
