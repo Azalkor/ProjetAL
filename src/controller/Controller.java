@@ -87,7 +87,7 @@ public class Controller {
 			System.out.println("Button Action\n");
 		});
 		
-		m.CreateRect(20, 20, new Point2D((shapePane.getPrefWidth()-20)/2,1), new Point2D(50,50), Color.BLACK);//gaffe
+		m.CreateRect(20, 20, new Point2D((shapePane.getPrefWidth()-20)/2,1), Color.BLACK);
 
 		for (Shape s : m.getGroup().getShapes()) {
 			if (s instanceof model.Rectangle){

@@ -11,9 +11,8 @@ public class AbstractShape implements Shape{
 	protected Point2D centreRotation;
 	private Color couleur;
 	
-	public AbstractShape(Point2D position, Point2D centreRotation, Color couleur) {
+	public AbstractShape(Point2D position, Color couleur) {
 		this.position = position;
-		this.centreRotation = centreRotation;
 		this.couleur = couleur;
 	}
 
@@ -72,9 +71,39 @@ public class AbstractShape implements Shape{
 
 
 	@Override
-	public Shape copy() {
-		return new AbstractShape(position, centreRotation, couleur);
+	public Shape clone() {
+		return new AbstractShape(position, couleur);
 	}
+
+
+
+	public int egale(Object obj) {
+		if (this == obj)
+			return 1;
+		if (obj == null)
+			return 0;
+		if (getClass() != obj.getClass())
+			return 0;
+		AbstractShape other = (AbstractShape) obj;
+		if (centreRotation == null) {
+			if (other.centreRotation != null)
+				return 0;
+		} else if (!centreRotation.equals(other.centreRotation))
+			return 0;
+		if (couleur == null) {
+			if (other.couleur != null)
+				return 0;
+		} else if (!couleur.equals(other.couleur))
+			return 0;
+		if (position == null) {
+			if (other.position != null)
+				return 0;
+		} else if (!position.equals(other.position))
+			return 0;
+		return 1;
+	}
+	
+	
 	
 	
 }

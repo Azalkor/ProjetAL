@@ -50,9 +50,7 @@ public class DragAndDrop {
 					if (s instanceof Rectangle) {
 						Rectangle r=(Rectangle)s;
 						m.CreateRect((float) r.getWidth(), (float) r.getHeight(),
-								new Point2D(dropPos.getX(), dropPos.getY()),
-								new Point2D(dropPos.getX() + r.getWidth() / 2, dropPos.getY() + r.getHeight() / 2),
-								Color.BLACK);
+								new Point2D(dropPos.getX(), dropPos.getY()), Color.BLACK);
 						Rectangle newShape = new Rectangle(r.getWidth(), r.getHeight());
 						newShape.setX(dropPos.getX());
 						newShape.setY(dropPos.getY());

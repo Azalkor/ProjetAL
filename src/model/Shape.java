@@ -10,5 +10,5 @@ public interface Shape {
 	public void rotation(float deg);
 	public void translation(Vec2d dir);
 	public void accept();
-	public Shape copy();
+	public Shape clone();
 }

@@ -24,8 +24,10 @@ public class Rectangle extends AbstractShape{
 		this.hauteur = hauteur;
 	}
 	
-	public Rectangle(float largeur, float hauteur, Point2D pos, Point2D centreRot, Color couleur) {
-		super(pos, centreRot, couleur);
+	public Rectangle(float largeur, float hauteur, Point2D pos, Color couleur) {
+		super(pos, couleur);
+		super.centreRotation = new Point2D(super.position.getX() + largeur / 2,
+				super.position.getY()+ 30 / 2);
 		this.largeur = largeur;
 		this.hauteur = hauteur;
 		this.bordsRond = false;
@@ -57,7 +59,27 @@ public class Rectangle extends AbstractShape{
 				super.position.getY() + hauteur / 2);
 	}
 	
-	public Shape clone(){
-		return new Rectangle(largeur, hauteur, super.position, super.centreRotation, super.getCouleur());
+	public Rectangle clone(){
+		return new Rectangle(largeur, hauteur, super.position,  super.getCouleur());
 	}
+	
+	@Override
+	public int egale(Object obj) {
+		if (this == obj)
+			return 1;
+		if (!super.equals(obj))
+			return 0;
+		if (getClass() != obj.getClass())
+			return 0;
+		Rectangle other = (Rectangle) obj;
+		if (bordsRond != other.bordsRond)
+			return 0;
+		if (Float.floatToIntBits(hauteur) != Float.floatToIntBits(other.hauteur))
+			return 0;
+		if (Float.floatToIntBits(largeur) != Float.floatToIntBits(other.largeur))
+			return 0;
+		return 1;
+	}
+	
+	
 }
