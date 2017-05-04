@@ -31,7 +31,7 @@ public class Model {
 	}
 	
 	
-	public void AddRectToolBar(float largeur, float hauteur, Point2D pos, Color couleur){
+	public void AddRectToolBar(double largeur, double hauteur, Point2D pos, Color couleur){
 		System.out.println("largeur : "+largeur+" hauteur : "+hauteur +" posX : "+pos.getX()+" posY : "+pos.getY() );
 		toolbar.addShape(new Rectangle(largeur, hauteur, pos,  couleur));
 		this.ActionPerformed();
@@ -42,9 +42,10 @@ public class Model {
 		this.ActionPerformed();
 	}
 	
-	public void DrawRect(float largeur, float hauteur, Point2D pos, Color couleur){
+	public void DrawRect(double largeur, double hauteur, Point2D pos, Color couleur){
 		System.out.println("largeur : "+largeur+" hauteur : "+hauteur +" posX : "+pos.getX()+" posY : "+pos.getY() );
-		group.addShape(new Rectangle(largeur, hauteur, pos,  couleur));
+		group.addShape(new Rectangle
+				(largeur, hauteur, pos,  couleur));
 		this.ActionPerformed();
 	}
 	

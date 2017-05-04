@@ -81,11 +81,6 @@ public class ShapeGroup implements Shape {
 		System.out.println(str);
 	}
 
-	@Override
-	public void accept() {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public ShapeGroup clone() {

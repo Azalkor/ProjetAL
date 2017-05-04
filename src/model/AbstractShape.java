@@ -69,11 +69,6 @@ public class AbstractShape implements Shape{
 	}
 
 
-	@Override
-	public void accept() {
-		// TODO Auto-generated method stub
-		
-	}
 
 
 	@Override
