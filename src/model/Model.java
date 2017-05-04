@@ -4,7 +4,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 
 public class Model {
-	private static Model instance;
+	private static Model instance=null;
 	private ShapeGroup group;
 	private ShapeGroup toolbar;
 	public Memoire historique;
@@ -14,6 +14,12 @@ public class Model {
 	public ShapeGroup getGroup() {
 		return group;
 	}
+
+	public ShapeGroup getToolbar() {
+		return toolbar;
+	}
+
+
 
 	public static Model getInstance() {
 		if (instance == null) {
@@ -49,7 +55,7 @@ public class Model {
 		this.ActionPerformed();
 	}
 	
-	public void DrawPoly(int nbCotes,int longueurCotes, Point2D pos, Color couleur) {
+	public void DrawPoly(int nbCotes,float longueurCotes, Point2D pos, Color couleur) {
 		group.addShape(new Polygone(nbCotes, longueurCotes, pos, couleur));
 		this.ActionPerformed();
 	}
