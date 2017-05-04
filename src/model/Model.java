@@ -19,14 +19,14 @@ public class Model {
 		this.ActionPerformed();
 	}
 	
-	public void CreateRect(float largeur, float hauteur, Point2D pos, Point2D centreRot, Color couleur){
-		System.out.println("largeur : "+largeur+" hauteur : "+hauteur +" posX : "+pos.getX()+" posY : "+pos.getY()+ " centreX : "+centreRot.getX()+" centreY : "+centreRot.getY());
-		group.addShape(new Rectangle(largeur, hauteur, pos, centreRot, couleur));
+	public void CreateRect(float largeur, float hauteur, Point2D pos, Color couleur){
+		System.out.println("largeur : "+largeur+" hauteur : "+hauteur +" posX : "+pos.getX()+" posY : "+pos.getY() );
+		group.addShape(new Rectangle(largeur, hauteur, pos,  couleur));
 		this.ActionPerformed();
 	}
 	
-	public void CreatePoly(int nbCotes,int longueurCotes, Point2D pos, Point2D centreRot, Color couleur) {
-		group.addShape(new Polygone(nbCotes, longueurCotes, pos, centreRot, couleur));
+	public void CreatePoly(int nbCotes,int longueurCotes, Point2D pos, Color couleur) {
+		group.addShape(new Polygone(nbCotes, longueurCotes, pos, couleur));
 		this.ActionPerformed();
 	}
 	

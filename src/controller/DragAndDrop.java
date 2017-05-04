@@ -45,10 +45,7 @@ public class DragAndDrop {
 					System.out.println("carré créé");
 					Point2D dropPos = new Point2D(event.getX(), event.getY());
 					m.CreateRect((float) rectangleFabrique.getWidth(), (float) rectangleFabrique.getHeight(),
-							new Point2D(dropPos.getX(), dropPos.getY()),
-							new Point2D(dropPos.getX() + rectangleFabrique.getWidth() / 2,
-									dropPos.getY() + rectangleFabrique.getHeight() / 2),
-							Color.BLACK);
+							new Point2D(dropPos.getX(), dropPos.getY()),Color.BLACK);
 					Rectangle newRect = new Rectangle(rectangleFabrique.getWidth(), rectangleFabrique.getHeight());
 					newRect.setX(dropPos.getX());
 					newRect.setY(dropPos.getY());

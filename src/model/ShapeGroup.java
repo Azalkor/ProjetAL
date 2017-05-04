@@ -94,4 +94,8 @@ public class ShapeGroup implements Shape{
 		}
 		return copy;
 	}
+	
+	public int egale (ShapeGroup compare){
+		return 1;
+	}
 }

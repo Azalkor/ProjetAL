@@ -61,7 +61,25 @@ public class Polygone extends AbstractShape{
 	return points;
 	}
 	
-	public Shape clone(){
+	
+	
+	public int egale(Object obj) {
+		if (this == obj)
+			return 1;
+		if (!super.equals(obj))
+			return 0;
+		if (getClass() != obj.getClass())
+			return 0;
+		Polygone other = (Polygone) obj;
+		if (Float.floatToIntBits(longueurCotes) != Float.floatToIntBits(other.longueurCotes))
+			return 0;
+		if (nbCotes != other.nbCotes)
+			return 0;
+		return 1;
+	}
+	
+	
+	public Polygone clone(){
 		Polygone copy = new Polygone(nbCotes, longueurCotes, super.position, super.getCouleur());
 		return copy;
 	}
