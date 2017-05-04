@@ -39,6 +39,12 @@ public class AbstractShape implements Shape{
 	@Override
 	public void translation(Vec2d dir) {
 		position.add(position.getX()+dir.x, position.getY()+dir.y);		
+		if (position.getX() < 0){
+			position.add(- position.getX(), 0);
+		}
+		if (position.getY() < 0){
+			position.add(0,- position.getY());
+		}
 	}
 
 	public Color getCouleur(){
@@ -78,6 +84,7 @@ public class AbstractShape implements Shape{
 
 
 	public int egale(Object obj) {
+		System.out.println("Appele methode egale ABSTRACT param obj");
 		if (this == obj)
 			return 1;
 		if (obj == null)
@@ -101,6 +108,16 @@ public class AbstractShape implements Shape{
 		} else if (!position.equals(other.position))
 			return 0;
 		return 1;
+	}
+
+
+
+	@Override
+	public int egale(Shape s) {
+		System.out.println("Appele methode egale ABSTRACT");
+		if(this.position.distance(s.getPosition())==0)
+			return 1;
+		return 0;
 	}
 	
 	

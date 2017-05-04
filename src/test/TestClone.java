@@ -27,8 +27,9 @@ public class TestClone {
 		Polygone polCopy = pol.clone();
 		collection.addShape(pol);
 		collectionCopy.addShape(polCopy);
-		
-		assertEquals(collection, collectionCopy);
+		collection.liste();
+		collectionCopy.liste();
+		assertEquals(collection.egal(collectionCopy), 1);
 	}
 
 }

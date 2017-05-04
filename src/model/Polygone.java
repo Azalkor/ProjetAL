@@ -57,19 +57,11 @@ public class Polygone extends AbstractShape {
 		return points;
 	}
 	
-	public int egale(Object obj) {
-		if (this == obj)
+	public int egale(Polygone comp) {
+		if(this.longueurCotes == comp.getLongueurCotes() && this.nbCotes == comp.nbCotes){
 			return 1;
-		if (!super.equals(obj))
-			return 0;
-		if (getClass() != obj.getClass())
-			return 0;
-		Polygone other = (Polygone) obj;
-		if (Float.floatToIntBits(longueurCotes) != Float.floatToIntBits(other.longueurCotes))
-			return 0;
-		if (nbCotes != other.nbCotes)
-			return 0;
-		return 1;
+		}
+		return 0;
 	}
 	
 	

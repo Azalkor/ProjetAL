@@ -11,4 +11,5 @@ public interface Shape {
 	public void translation(Vec2d dir);
 	public void accept();
 	public Shape clone();
+	public int egale(Shape s);
 }
