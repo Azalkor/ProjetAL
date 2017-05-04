@@ -4,7 +4,7 @@ import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 
 public class Model {
-	private static Model instance;
+	private static Model instance=null;
 	private ShapeGroup group;
 	public Memoire historique;
 	private int index;
@@ -35,7 +35,7 @@ public class Model {
 		this.ActionPerformed();
 	}
 	
-	public void CreatePoly(int nbCotes,int longueurCotes, Point2D pos, Color couleur) {
+	public void CreatePoly(int nbCotes,float longueurCotes, Point2D pos, Color couleur) {
 		group.addShape(new Polygone(nbCotes, longueurCotes, pos, couleur));
 		this.ActionPerformed();
 	}

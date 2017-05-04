@@ -51,8 +51,8 @@ public class Polygone extends AbstractShape {
 
 		for (int i = 0; i < nbCotes; i+=2) {
 			double angle = i/2 * (2 * Math.PI / nbCotes);
-			points[i] = r * Math.cos(angle) + centre.getX();
-			points[i + 1] = r * Math.sin(angle) + centre.getY();
+			points[i] = r * Math.cos(angle) + super.centreRotation.getX();
+			points[i + 1] = r * Math.sin(angle) + super.centreRotation.getY();
 		}
 		return points;
 	}
