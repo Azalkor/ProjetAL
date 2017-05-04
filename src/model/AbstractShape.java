@@ -17,14 +17,29 @@ public class AbstractShape implements Shape{
 		this.couleur = couleur;
 	}
 
+	
+
+	public Point2D getPosition() {
+		return position;
+	}
+
+
+
+	public void setPosition(Point2D position) {
+		this.position = position;
+	}
+
+
+
+	public void setCouleur(Color couleur) {
+		this.couleur = couleur;
+	}
+
+
 
 	@Override
 	public void translation(Vec2d dir) {
 		position.add(position.getX()+dir.x, position.getY()+dir.y);		
-	}
-	
-	public void changeCouleur(Color newColor) {
-		this.couleur = newColor;
 	}
 
 	public Color getCouleur(){

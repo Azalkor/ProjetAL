@@ -15,7 +15,7 @@ public class ShapeGroup implements Shape{
 	}
 	
 	public Memento save() {
-		System.out.println("Etat Sauvegardé:\n");
+		System.out.println("Etat SauvegardÃ©:\n");
 		ShapeGroup group = (ShapeGroup) etat;
 		group.liste();
 		return new Memento(etat);
@@ -93,5 +93,11 @@ public class ShapeGroup implements Shape{
 			copy.addShape(shape);
 		}
 		return copy;
+	}
+
+	@Override
+	public Point2D getPosition() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

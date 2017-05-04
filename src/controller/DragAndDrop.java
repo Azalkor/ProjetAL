@@ -10,20 +10,23 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Polygon;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import model.Model;
 
 public class DragAndDrop {
-	
-	public DragAndDrop(Rectangle rectangleFabrique, Pane dropPane, Model m) {
-		rectangleFabrique.setOnDragDetected(new EventHandler<MouseEvent>() {
+
+	public DragAndDrop(Shape s, Pane dropPane, Model m) {
+		s.setOnDragDetected(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
-				Controller.state=1;
-				Dragboard db = rectangleFabrique.startDragAndDrop(TransferMode.ANY);
+				System.out.println("pd");
+				Controller.state = 1;
+				Dragboard db = s.startDragAndDrop(TransferMode.ANY);
 				ClipboardContent content = new ClipboardContent();
 				content.putString("");
 				db.setContent(content);
-				WritableImage wi = rectangleFabrique.snapshot(null, null);
+				WritableImage wi = s.snapshot(null, null);
 				db.setDragView(wi);
 				event.consume();
 			}
@@ -40,26 +43,32 @@ public class DragAndDrop {
 
 		dropPane.setOnDragDropped(new EventHandler<DragEvent>() {
 			public void handle(DragEvent event) {
-				if (Controller.state!=4){
-					Controller.state=2;
-					System.out.println("carré créé");
+				if (Controller.state != 4) {
+					Controller.state = 2;
+					System.out.println("forme créée");
 					Point2D dropPos = new Point2D(event.getX(), event.getY());
-					m.CreateRect((float) rectangleFabrique.getWidth(), (float) rectangleFabrique.getHeight(),
-							new Point2D(dropPos.getX(), dropPos.getY()),
-							new Point2D(dropPos.getX() + rectangleFabrique.getWidth() / 2,
-									dropPos.getY() + rectangleFabrique.getHeight() / 2),
-							Color.BLACK);
-					Rectangle newRect = new Rectangle(rectangleFabrique.getWidth(), rectangleFabrique.getHeight());
-					newRect.setX(dropPos.getX());
-					newRect.setY(dropPos.getY());
-					newRect.setOnMouseDragged(new EventHandler<MouseEvent>() {
-						public void handle(MouseEvent event){
-							Controller.state = 5;
-							newRect.setX(event.getX());
-							newRect.setY(event.getY());
-						}
-					});
-					dropPane.getChildren().add(newRect);
+					if (s instanceof Rectangle) {
+						Rectangle r=(Rectangle)s;
+						m.CreateRect((float) r.getWidth(), (float) r.getHeight(),
+								new Point2D(dropPos.getX(), dropPos.getY()),
+								new Point2D(dropPos.getX() + r.getWidth() / 2, dropPos.getY() + r.getHeight() / 2),
+								Color.BLACK);
+						Rectangle newShape = new Rectangle(r.getWidth(), r.getHeight());
+						newShape.setX(dropPos.getX());
+						newShape.setY(dropPos.getY());
+						newShape.setOnMouseDragged(new EventHandler<MouseEvent>() {
+							public void handle(MouseEvent event) {
+								Controller.state = 5;
+								newShape.setX(event.getX());
+								newShape.setY(event.getY());
+							}
+						});
+						dropPane.getChildren().add(newShape);
+					}
+					else if(s instanceof Polygon){
+						Polygon newShape=(Polygon)s;
+						dropPane.getChildren().add(newShape);
+					}
 					event.consume();
 				}
 			}

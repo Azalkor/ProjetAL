@@ -4,7 +4,6 @@ import javafx.event.EventHandler;
 import javafx.geometry.Point2D;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.SnapshotParameters;
-import javafx.scene.image.ImageView;
 import javafx.scene.image.WritableImage;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.Dragboard;
@@ -12,6 +11,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.TransferMode;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import model.Model;
 import model.Shape;
@@ -22,7 +22,7 @@ public class CreateGroup {
 	static Rectangle selectZone;
 	ShapeGroup selectedShapes = new ShapeGroup();
 	
-	public CreateGroup(Model m, Pane p, double xOffset, double yOffset){
+	public CreateGroup(Model m, Pane p, Pane sPane, double yOffset){
 		
 		p.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event){
@@ -60,16 +60,16 @@ public class CreateGroup {
 		p.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
 				Controller.state=4;
-				for (Shape s : m.group.getShapes()) {
+				for (Shape s : m.getGroup().getShapes()) {
 					if(selectZone.contains(s.getCentre())){
 						selectedShapes.addShape(s);
 					}
 				}
 				if(!selectedShapes.getShapes().isEmpty()){
 					if(selectedShapes.getShapes().size()>1)
-						m.group.addShape(selectedShapes);
+						m.getGroup().addShape(selectedShapes);
 					else
-						m.group.addShape(selectedShapes.getShapes().get(0));
+						m.getGroup().addShape(selectedShapes.getShapes().get(0));
 				}
 				selectZone.setOnDragDetected(new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent event) {
@@ -78,10 +78,17 @@ public class CreateGroup {
 						content.putString("");
 						db.setContent(content);
 						WritableImage wi = new WritableImage((int)selectZone.getWidth(), (int)selectZone.getHeight());
+						WritableImage wi2 = new WritableImage((int)selectZone.getWidth(), (int)selectZone.getHeight());
 						SnapshotParameters sp = new SnapshotParameters();
-						sp.setViewport(new Rectangle2D(selectZone.getX()+xOffset,selectZone.getY()+yOffset,1000,1000));
+						sp.setViewport(new Rectangle2D(selectZone.getX()+sPane.getPrefWidth(),selectZone.getY()+yOffset,1000,1000));
+						p.snapshot(sp, wi2);
+						db.setDragView(wi2);
+						sp.setFill(Color.TRANSPARENT);
 						p.snapshot(sp, wi);
-						db.setDragView(wi);
+						Rectangle rTest = new Rectangle(wi.getWidth(),wi.getHeight());
+						ImagePattern ip = new ImagePattern(wi);
+						rTest.setFill(ip);
+						sPane.getChildren().add(rTest);
 						event.consume();
 					}
 				});
