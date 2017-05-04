@@ -6,25 +6,25 @@ import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 
 public class Rectangle extends AbstractShape{
-	private float largeur;
-	private float hauteur;
+	private double largeur;
+	private double hauteur;
 	private boolean bordsRond;
 	
-	public float getLargeur() {
+	public double getLargeur() {
 		return largeur;
 	}
-	public void setLargeur(float largeur) {
+	public void setLargeur(double largeur) {
 		this.largeur = largeur;
 	}
 
-	public float getHauteur() {
+	public double getHauteur() {
 		return hauteur;
 	}
-	public void setHauteur(float hauteur) {
+	public void setHauteur(double hauteur) {
 		this.hauteur = hauteur;
 	}
 	
-	public Rectangle(float largeur, float hauteur, Point2D pos, Color couleur) {
+	public Rectangle(double largeur, double hauteur, Point2D pos, Color couleur) {
 		super(pos, couleur);
 		super.centreRotation = new Point2D(super.position.getX() + largeur / 2,
 				super.position.getY()+ 30 / 2);
@@ -45,7 +45,7 @@ public class Rectangle extends AbstractShape{
 		bordsRond = false;
 	}
 	
-	public void rotation(float angle) {
+	public void rotation(double angle) {
 		double dx = super.position.getX() - super.centreRotation.getX();
 		double dy = super.position.getX() - super.centreRotation.getX();;
 		double newX = super.position.getX() - dx*Math.cos(angle) + dy*Math.sin(angle);
@@ -63,22 +63,12 @@ public class Rectangle extends AbstractShape{
 		return new Rectangle(largeur, hauteur, super.position,  super.getCouleur());
 	}
 	
-	@Override
-	public int egale(Object obj) {
-		if (this == obj)
+	public int egale(Rectangle obj) {
+		System.out.println("Appele methode egale RECTANGLE");
+		if(this.hauteur == obj.getHauteur() && this.largeur == obj.getLargeur())
 			return 1;
-		if (!super.equals(obj))
-			return 0;
-		if (getClass() != obj.getClass())
-			return 0;
-		Rectangle other = (Rectangle) obj;
-		if (bordsRond != other.bordsRond)
-			return 0;
-		if (Float.floatToIntBits(hauteur) != Float.floatToIntBits(other.hauteur))
-			return 0;
-		if (Float.floatToIntBits(largeur) != Float.floatToIntBits(other.largeur))
-			return 0;
-		return 1;
+		System.out.println("dsl"+ this.hauteur + "pas égale à "+obj.getHauteur()+ "ou "+this.largeur+ "pas égale à" + obj.getLargeur());
+		return 0;
 	}
 	
 	

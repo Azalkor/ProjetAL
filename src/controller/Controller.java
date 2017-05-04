@@ -50,7 +50,7 @@ public class Controller {
 	private Pane shapePane;
 	@FXML
 	private ToolBar toolBar;
-
+	
 	public static Controller getInstance(){
 		if(instance==null)
 			instance=new Controller();
@@ -73,15 +73,10 @@ public class Controller {
 		});
 
 		buttonUndo.setOnAction((event) -> {
-			System.out.println("Liste Avant Undo\n");
-			m.Liste();
 			m.Undo();
-			System.out.println("Liste Après\n");
-			m.Liste();
 		});
 
 		buttonRedo.setOnAction((event) -> {
-			System.out.println("Button Action\n");
 			m.Redo();
 		});
 
@@ -89,8 +84,8 @@ public class Controller {
 			System.out.println("Button Action\n");
 		});
 
-		m.CreateRect(20, 20, new Point2D((shapePane.getPrefWidth() - 20) / 2, 1), Color.PINK);
-		m.CreatePoly(6, 15, new Point2D((shapePane.getPrefWidth() - 20) / 2, 22), Color.PINK);
+		m.AddRectToolBar(20, 20, new Point2D((shapePane.getPrefWidth() - 20) / 2, 1), Color.RED);
+		m.AddPolyToolbar(6, 15, new Point2D((shapePane.getPrefWidth() - 20) / 2, 22), Color.BLUE);
 
 		refreshShapePane();
 
@@ -98,8 +93,8 @@ public class Controller {
 	}
 
 	public void refreshShapePane() {
-		for (Shape s : m.getGroup().getShapes()) {
-			shapePane.getChildren().clear();
+		shapePane.getChildren().clear();
+		for (Shape s : m.getToolbar().getShapes()) {
 			if (s instanceof model.Rectangle) {
 				System.out.println("first rect");
 				model.Rectangle rModel = (model.Rectangle) s;
@@ -124,12 +119,16 @@ public class Controller {
 		}
 	}
 	
-	public void refreshDropPane() {
+	public void refreshDropPane(Pane dropPane) {
+		dropPane.getChildren().clear();
 		for (Shape s : m.getGroup().getShapes()) {
-			dropPane.getChildren().clear();
+			
 			if (s instanceof model.Rectangle) {
 				model.Rectangle r = (model.Rectangle)s;
-				Rectangle newShape = new Rectangle(r.getLargeur(), r.getHauteur(),r.getPosition().getX(),r.getPosition().getY());
+				System.out.println(r.getLargeur()+"-"+r.getHauteur()+"-"+r.getPosition().getX()+"-"+r.getPosition().getY());
+				Rectangle newShape = new Rectangle(r.getPosition().getX(),r.getPosition().getY(),r.getLargeur(), r.getHauteur());
+				newShape.setFill(r.getCouleur());
+				System.out.println(newShape.getWidth());
 				newShape.setOnMouseDragged(new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent event) {
 						Controller.state = 5;
@@ -142,6 +141,7 @@ public class Controller {
 				model.Polygone p = (model.Polygone)s;
 				Polygon newShape = new Polygon(p.getPoints());
 				newShape.relocate(p.getPosition().getX(), p.getPosition().getY());
+				newShape.setFill(p.getCouleur());
 				newShape.setOnMouseDragged(new EventHandler<MouseEvent>() {
 					public void handle(MouseEvent event) {
 						Controller.state = 5;

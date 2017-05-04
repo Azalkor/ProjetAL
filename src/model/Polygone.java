@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 
 public class Polygone extends AbstractShape {
 	private int nbCotes;
-	private float longueurCotes;
+	private double longueurCotes;
 
 	public int getNbCotes() {
 		return nbCotes;
@@ -17,15 +17,15 @@ public class Polygone extends AbstractShape {
 		this.nbCotes = nbCotes;
 	}
 
-	public float getLongueurCotes() {
+	public double getLongueurCotes() {
 		return longueurCotes;
 	}
 
-	public void setLongueurCotes(float longueurCotes) {
+	public void setLongueurCotes(double longueurCotes) {
 		this.longueurCotes = longueurCotes;
 	}
 	
-	public Polygone(int nbCotes, float longueurCotes, Point2D pos,  Color couleur) {
+	public Polygone(int nbCotes, double longueurCotes, Point2D pos,  Color couleur) {
 		super(pos,couleur);
 		this.nbCotes = nbCotes;
 		this.longueurCotes = longueurCotes;
@@ -38,7 +38,6 @@ public class Polygone extends AbstractShape {
 	}
 
 	public double[] getPoints() {
-		Point2D centre = new Point2D(0, 0);
 
 		double[] points = new double[nbCotes * 2];
 
@@ -57,19 +56,11 @@ public class Polygone extends AbstractShape {
 		return points;
 	}
 	
-	public int egale(Object obj) {
-		if (this == obj)
+	public int egale(Polygone comp) {
+		if(this.longueurCotes == comp.getLongueurCotes() && this.nbCotes == comp.nbCotes){
 			return 1;
-		if (!super.equals(obj))
-			return 0;
-		if (getClass() != obj.getClass())
-			return 0;
-		Polygone other = (Polygone) obj;
-		if (Float.floatToIntBits(longueurCotes) != Float.floatToIntBits(other.longueurCotes))
-			return 0;
-		if (nbCotes != other.nbCotes)
-			return 0;
-		return 1;
+		}
+		return 0;
 	}
 	
 	

@@ -7,8 +7,9 @@ import javafx.geometry.Point2D;
 public interface Shape {
 	public Point2D getPosition();
 	public Point2D getCentre();
-	public void rotation(float deg);
+	public void rotation(double deg);
 	public void translation(Vec2d dir);
 	public void accept();
 	public Shape clone();
+	public int egale(Shape s);
 }

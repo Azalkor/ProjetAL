@@ -39,7 +39,6 @@ public class DragAndDrop {
 				event.consume();
 			}
 		});
-
 		dropPane.setOnDragDropped(new EventHandler<DragEvent>() {
 			public void handle(DragEvent event) {
 				if (Controller.state != 4) {
@@ -47,16 +46,17 @@ public class DragAndDrop {
 					if (event.getGestureSource() instanceof Rectangle) {
 						Controller.state = 2;
 						Rectangle r = (Rectangle) event.getGestureSource();
-						m.CreateRect((float) r.getWidth(), (float) r.getHeight(), dropPos, (Color) r.getFill());
-						Controller.getInstance().refreshDropPane();
+						m.DrawRect((float) r.getWidth(), (float) r.getHeight(), dropPos, (Color) r.getFill());
+						Controller.getInstance().refreshDropPane(dropPane);
 					} else if (event.getGestureSource() instanceof Polygon) {
 						Controller.state = 2;
 						Polygon p = (Polygon) event.getGestureSource();
-						m.CreatePoly(p.getPoints().size() / 2,
+						m.DrawPoly(p.getPoints().size() / 2,
 								(int) new Point2D(p.getPoints().get(0), p.getPoints().get(1))
 										.distance(p.getPoints().get(2), p.getPoints().get(3)),
 								dropPos, (Color) p.getFill());
-						Controller.getInstance().refreshDropPane();
+						
+						Controller.getInstance().refreshDropPane(dropPane);
 					}
 					event.consume();
 				}

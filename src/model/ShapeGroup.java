@@ -56,7 +56,7 @@ public class ShapeGroup implements Shape {
 	}
 
 	@Override
-	public void rotation(float deg) {
+	public void rotation(double deg) {
 		// TODO Auto-generated method stub
 
 	}
@@ -102,7 +102,39 @@ public class ShapeGroup implements Shape {
 		return null;
 	}
 
-	public int egale(ShapeGroup compare) {
+	public int egal(ShapeGroup compare) {
+		ArrayList<Shape> comp = compare.getShapes();
+		if(shapes.size() != comp.size()){
+			System.out.println("Failed: unequal size");
+			return 0;
+		}
+		for(int i = 0 ; i< shapes.size(); i++){
+			if(shapes.get(i) instanceof Rectangle && comp.get(i) instanceof Rectangle){
+				Rectangle test2 = (Rectangle) comp.get(i);
+				Rectangle test = (Rectangle) shapes.get(i);
+				if(test.egale(test2) != 1){
+					System.out.println("Failed:" + shapes.get(i) + "not equal to"+ comp.get(i));
+					return 0;
+				}
+			}
+			if(shapes.get(i) instanceof Polygone && comp.get(i) instanceof Polygone){
+				Polygone test = (Polygone)shapes.get(i);
+				Polygone test2 = (Polygone)comp.get(i);
+				if(test.egale(test2) != 1){
+					System.out.println("Failed:" + shapes.get(i) + "not equal to"+ comp.get(i));
+					return 0;
+				}
+			}
+		}
+			
 		return 1;
 	}
+
+	@Override
+	public int egale(Shape s) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 }
