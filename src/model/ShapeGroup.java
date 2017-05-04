@@ -56,7 +56,7 @@ public class ShapeGroup implements Shape {
 	}
 
 	@Override
-	public void rotation(float deg) {
+	public void rotation(double deg) {
 		// TODO Auto-generated method stub
 
 	}

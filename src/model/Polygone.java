@@ -7,7 +7,7 @@ import javafx.scene.paint.Color;
 
 public class Polygone extends AbstractShape {
 	private int nbCotes;
-	private float longueurCotes;
+	private double longueurCotes;
 
 	public int getNbCotes() {
 		return nbCotes;
@@ -17,15 +17,15 @@ public class Polygone extends AbstractShape {
 		this.nbCotes = nbCotes;
 	}
 
-	public float getLongueurCotes() {
+	public double getLongueurCotes() {
 		return longueurCotes;
 	}
 
-	public void setLongueurCotes(float longueurCotes) {
+	public void setLongueurCotes(double longueurCotes) {
 		this.longueurCotes = longueurCotes;
 	}
 	
-	public Polygone(int nbCotes, float longueurCotes, Point2D pos,  Color couleur) {
+	public Polygone(int nbCotes, double longueurCotes, Point2D pos,  Color couleur) {
 		super(pos,couleur);
 		this.nbCotes = nbCotes;
 		this.longueurCotes = longueurCotes;

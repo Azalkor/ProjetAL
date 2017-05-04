@@ -52,7 +52,7 @@ public class AbstractShape implements Shape{
 	}
 	
 	@Override
-	public void rotation(float deg) {
+	public void rotation(double deg) {
 		
 	}
 

@@ -6,25 +6,25 @@ import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 
 public class Rectangle extends AbstractShape{
-	private float largeur;
-	private float hauteur;
+	private double largeur;
+	private double hauteur;
 	private boolean bordsRond;
 	
-	public float getLargeur() {
+	public double getLargeur() {
 		return largeur;
 	}
-	public void setLargeur(float largeur) {
+	public void setLargeur(double largeur) {
 		this.largeur = largeur;
 	}
 
-	public float getHauteur() {
+	public double getHauteur() {
 		return hauteur;
 	}
-	public void setHauteur(float hauteur) {
+	public void setHauteur(double hauteur) {
 		this.hauteur = hauteur;
 	}
 	
-	public Rectangle(float largeur, float hauteur, Point2D pos, Color couleur) {
+	public Rectangle(double largeur, double hauteur, Point2D pos, Color couleur) {
 		super(pos, couleur);
 		super.centreRotation = new Point2D(super.position.getX() + largeur / 2,
 				super.position.getY()+ 30 / 2);
@@ -45,7 +45,7 @@ public class Rectangle extends AbstractShape{
 		bordsRond = false;
 	}
 	
-	public void rotation(float angle) {
+	public void rotation(double angle) {
 		double dx = super.position.getX() - super.centreRotation.getX();
 		double dy = super.position.getX() - super.centreRotation.getX();;
 		double newX = super.position.getX() - dx*Math.cos(angle) + dy*Math.sin(angle);
