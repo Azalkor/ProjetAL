@@ -71,15 +71,10 @@ public class Controller {
 		});
 
 		buttonUndo.setOnAction((event) -> {
-			System.out.println("Liste Avant Undo\n");
-			m.Liste();
 			m.Undo();
-			System.out.println("Liste Après\n");
-			m.Liste();
 		});
 
 		buttonRedo.setOnAction((event) -> {
-			System.out.println("Button Action\n");
 			m.Redo();
 		});
 
@@ -87,7 +82,7 @@ public class Controller {
 			System.out.println("Button Action\n");
 		});
 		
-		m.CreateRect(20, 20, new Point2D((shapePane.getPrefWidth()-20)/2,1), Color.BLACK);
+		m.DrawRect(20, 20, new Point2D((shapePane.getPrefWidth()-20)/2,1), Color.BLACK);
 
 		for (Shape s : m.getGroup().getShapes()) {
 			if (s instanceof model.Rectangle){

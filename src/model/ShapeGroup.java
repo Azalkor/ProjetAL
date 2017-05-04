@@ -3,7 +3,6 @@ package model;
 import java.util.ArrayList;
 
 import com.sun.javafx.geom.Vec2d;
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
 
 import javafx.geometry.Point2D;
 

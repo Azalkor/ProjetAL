@@ -49,7 +49,7 @@ public class DragAndDrop {
 					Point2D dropPos = new Point2D(event.getX(), event.getY());
 					if (s instanceof Rectangle) {
 						Rectangle r=(Rectangle)s;
-						m.CreateRect((float) r.getWidth(), (float) r.getHeight(),
+						m.DrawRect((float) r.getWidth(), (float) r.getHeight(),
 								new Point2D(dropPos.getX(), dropPos.getY()), Color.BLACK);
 						Rectangle newShape = new Rectangle(r.getWidth(), r.getHeight());
 						newShape.setX(dropPos.getX());

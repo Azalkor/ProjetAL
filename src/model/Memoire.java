@@ -5,8 +5,9 @@ import java.util.ArrayList;
 public class Memoire {
 
 	private ArrayList<Memento> historique;
-	private static Memoire instance;
+	//private static Memoire instance;
 
+	/*
 	public static Memoire getInstance(){
 		if(instance == null){
 			return new Memoire();
@@ -14,8 +15,9 @@ public class Memoire {
 
 		return instance;
 	}
+	*/
 
-	private Memoire(){
+	public Memoire(){
 		historique = new ArrayList<Memento>();
 	}
 
@@ -33,10 +35,10 @@ public class Memoire {
 		return historique.size();
 	}
 	
-	public void listHistoric(){
-		for(Memento shape : historique){
-			
+	public void list(){
+		Originator origin = new Originator();
+		for (Memento memento : historique) {
+			ShapeGroup mdr =  (ShapeGroup) origin.restaure(memento);
 		}
 	}
-	
 }

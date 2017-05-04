@@ -6,6 +6,7 @@ import javafx.scene.paint.Color;
 public class Model {
 	private static Model instance;
 	private ShapeGroup group;
+	private ShapeGroup toolbar;
 	public Memoire historique;
 	private int index;
 	Originator originator;
@@ -23,36 +24,44 @@ public class Model {
 
 	private Model() {
 		group = new ShapeGroup();
-		historique = Memoire.getInstance();
+		toolbar = new ShapeGroup();
+		historique = new Memoire();
 		index = -1;
 		originator = new Originator();
+	}
+	
+	
+	public void AddRectToolBar(float largeur, float hauteur, Point2D pos, Color couleur){
+		System.out.println("largeur : "+largeur+" hauteur : "+hauteur +" posX : "+pos.getX()+" posY : "+pos.getY() );
+		toolbar.addShape(new Rectangle(largeur, hauteur, pos,  couleur));
 		this.ActionPerformed();
 	}
 	
-	public void CreateRect(float largeur, float hauteur, Point2D pos, Color couleur){
+	public void AddPolyToolbar(int nbCotes,int longueurCotes, Point2D pos, Color couleur) {
+		toolbar.addShape(new Polygone(nbCotes, longueurCotes, pos, couleur));
+		this.ActionPerformed();
+	}
+	
+	public void DrawRect(float largeur, float hauteur, Point2D pos, Color couleur){
 		System.out.println("largeur : "+largeur+" hauteur : "+hauteur +" posX : "+pos.getX()+" posY : "+pos.getY() );
 		group.addShape(new Rectangle(largeur, hauteur, pos,  couleur));
 		this.ActionPerformed();
 	}
 	
-	public void CreatePoly(int nbCotes,int longueurCotes, Point2D pos, Color couleur) {
+	public void DrawPoly(int nbCotes,int longueurCotes, Point2D pos, Color couleur) {
 		group.addShape(new Polygone(nbCotes, longueurCotes, pos, couleur));
 		this.ActionPerformed();
 	}
 
 	public void ActionPerformed() {
-		group.setEtat(group);
-		historique.addMemento(group.save());
-		System.out.println("from" + index);
+		originator.setEtat(group);
+		historique.addMemento(originator.save());
 		index++;
-		System.out.println("ActionPerformed\nTo " + index + "\n");
 	}
 
 	public void Undo() {
 		if (index > 0) {
-			System.out.println("from" + index);
 			index--;
-			System.out.println("To" + index);
 			group = (ShapeGroup) group.restaure(historique.getMemento(index));
 		}
 	}
@@ -64,7 +73,4 @@ public class Model {
 		}
 	}
 
-	public void Liste() {
-		group.liste();
-	}
 }
