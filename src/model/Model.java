@@ -71,6 +71,7 @@ public class Model {
 			index--;
 			group = (ShapeGroup) group.restaure(historique.getMemento(index));
 		}
+		group.notifier();
 	}
 
 	public void Redo() {

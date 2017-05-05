@@ -7,6 +7,7 @@ import com.sun.javafx.geom.Vec2d;
 import javafx.geometry.Point2D;
 
 public class ShapeGroup implements Shape {
+	private ArrayList<ShapeObserver> observeurs;
 	private ArrayList<Shape> shapes;
 	private Shape etat;
 
@@ -125,10 +126,20 @@ public class ShapeGroup implements Shape {
 		return 1;
 	}
 
+
+	@Override
+	public void notifier() {
+		for (ShapeObserver observer : observeurs) {
+			observer.update();
+		}
+		for (Shape shape : shapes) {
+			shape.notifier();
+		}
+	}
+
 	@Override
 	public int egale(Shape s) {
-		// TODO Auto-generated method stub
-		return 0;
+		throw new UnsupportedOperationException();
 	}
 
 
