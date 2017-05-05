@@ -50,16 +50,18 @@ public class Model {
 		this.ActionPerformed();
 	}
 	
-	public void DrawRect(double largeur, double hauteur, Point2D pos, Color couleur){
-		System.out.println("largeur : "+largeur+" hauteur : "+hauteur +" posX : "+pos.getX()+" posY : "+pos.getY() );
-		group.addShape(new Rectangle
-				(largeur, hauteur, pos,  couleur));
+	public Rectangle DrawRect(double largeur, double hauteur, Point2D pos, Color couleur){
+		Rectangle r =new Rectangle (largeur, hauteur, pos,  couleur);
+		group.addShape(r);
 		this.ActionPerformed();
+		return r;
 	}
 	
-	public void DrawPoly(int nbCotes,float longueurCotes, Point2D pos, Color couleur) {
-		group.addShape(new Polygone(nbCotes, longueurCotes, pos, couleur));
+	public Polygone DrawPoly(int nbCotes,float longueurCotes, Point2D pos, Color couleur) {
+		Polygone p =new Polygone(nbCotes, longueurCotes, pos, couleur);
+		group.addShape(p);
 		this.ActionPerformed();
+		return p;
 	}
 
 	public void ActionPerformed() {
