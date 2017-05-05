@@ -11,6 +11,7 @@ public class ShapeGroup implements Shape {
 	private ArrayList<IShapeObserver> observeurs;
 	private ArrayList<Shape> shapes;
 	private Shape etat;
+	private Rectangle selection;
 
 	public void setEtat(Shape etat) {
 		this.etat = etat;
@@ -29,21 +30,10 @@ public class ShapeGroup implements Shape {
 	}
 
 	public Point2D getCentre() {
-		int i = 0;
-		int x = 0;
-		int y = 0;
-		if (!shapes.isEmpty())
-			System.out.println(shapes.size());
-			for (Shape s : shapes) {
-				x += s.getCentre().getX();
-				y += s.getCentre().getY();
-				i++;
-			}
-		if (i > 0) {
-			x /= i;
-			y /= i;
-		}
-		return new Point2D(x, y);
+		Point2D centre = new Point2D(0,0);
+		if(selection!=null)
+			centre.add(selection.getPosition());
+		return centre;
 	}
 
 	public ArrayList<Shape> getShapes() {
@@ -57,6 +47,13 @@ public class ShapeGroup implements Shape {
 	public ShapeGroup() {
 		shapes = new ArrayList<Shape>();
 		observeurs = new ArrayList<IShapeObserver>();
+		selection=null;
+	}
+	
+	public ShapeGroup(float largeur, float hauteur, Point2D pos) {
+		shapes = new ArrayList<Shape>();
+		observeurs = new ArrayList<IShapeObserver>();
+		selection=new Rectangle(largeur, hauteur, pos, Color.TRANSPARENT);
 	}
 
 	@Override

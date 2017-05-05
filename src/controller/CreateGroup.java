@@ -60,18 +60,18 @@ public class CreateGroup {
 		});
 		p.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
-				if (event.getButton() == MouseButton.PRIMARY && Controller.state==3) {
+				if (event.getButton() == MouseButton.PRIMARY && Controller.state == 3) {
 					Controller.state = 4;
 					for (Shape s : m.getGroup().getShapes()) {
 						if (selectZone.contains(s.getCentre())) {
 							selectedShapes.addShape(s);
+							//m.getGroup().getShapes().remove(s);
 						}
 					}
 					if (!selectedShapes.getShapes().isEmpty()) {
-						if (selectedShapes.getShapes().size() > 1)
-							m.getGroup().addShape(selectedShapes);
-						else
-							m.getGroup().addShape(selectedShapes.getShapes().get(0));
+						m.getGroup().addShape(selectedShapes);
+						selectedShapes=new ShapeGroup((float)selectZone.getWidth(), (float)selectZone.getHeight(), new Point2D(selectZone.getX(),selectZone.getY()));
+						m.getGroup().liste();
 					}
 					selectZone.setOnDragDetected(new EventHandler<MouseEvent>() {
 						public void handle(MouseEvent event) {
@@ -84,7 +84,7 @@ public class CreateGroup {
 							WritableImage wi2 = new WritableImage((int) selectZone.getWidth(),
 									(int) selectZone.getHeight());
 							SnapshotParameters sp = new SnapshotParameters();
-							sp.setViewport(new Rectangle2D(selectZone.getX() + sPane.getPrefWidth()+20,
+							sp.setViewport(new Rectangle2D(selectZone.getX() + sPane.getPrefWidth() + 20,
 									selectZone.getY() + yOffset, 1000, 1000));
 							p.snapshot(sp, wi2);
 							db.setDragView(wi2);
@@ -93,7 +93,7 @@ public class CreateGroup {
 							Rectangle rTest = new Rectangle(wi.getWidth(), wi.getHeight());
 							ImagePattern ip = new ImagePattern(wi);
 							rTest.setFill(ip);
-							//sPane.getChildren().add(rTest);
+							// sPane.getChildren().add(rTest);
 							event.consume();
 						}
 					});

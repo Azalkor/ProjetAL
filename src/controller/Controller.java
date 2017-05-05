@@ -3,6 +3,7 @@ package controller;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
 import javafx.scene.input.MouseEvent;
@@ -120,21 +121,39 @@ public class Controller {
 		}
 	}
 
-	/*
-	 * public void refreshObserver(){ refreshDropPane(dropPane); }
-	 * 
-	 * public void refreshDropPane(Pane dropPane) {
-	 * /*dropPane.getChildren().clear(); for (Shape s :
-	 * m.getGroup().getShapes()) {
-	 * 
-	 * if (s instanceof model.Rectangle) { model.Rectangle r = (model.Rectangle)
-	 * s; System.out.println(r.getLargeur() + "-" + r.getHauteur() + "-" +
-	 * r.getPosition().getX() + "-" + r.getPosition().getY()); } else if (s
-	 * instanceof model.Polygone) {
-	 * 
-	 * } else { throw new
-	 * TypeNotPresentException("erreur type de forme dropPane : "+s.getClass(),
-	 * null); } } }
-	 */
+	public void refreshObserver() {
+		
+		refreshDropPane(dropPane);
+	}
+
+	public void refreshDropPane(Pane dropPane) {
+		for (model.Shape s : m.getGroup().getShapes()) {
+			
+			recur(s,dropPane);
+		}
+	}
+	
+	public void recur(Shape s,Pane dropPane){
+		for (Node sfx : dropPane.getChildren()) {
+			if(sfx instanceof javafx.scene.shape.Shape){
+				javafx.scene.shape.Shape tmp=(javafx.scene.shape.Shape) sfx;
+				if(s.getId()==(int)tmp.getUserData()){
+					if(tmp instanceof Rectangle){
+						model.Rectangle sCast = (model.Rectangle)s;
+						Rectangle tmpCast = (Rectangle)tmp;
+						tmpCast.setX(sCast.getPosition().getX());
+						tmpCast.setY(sCast.getPosition().getY());
+						tmpCast.setWidth(sCast.getLargeur());
+						tmpCast.setHeight(sCast.getHauteur());
+						tmpCast.setFill(sCast.getCouleur());
+						if(sCast.isBordRond())
+							tmpCast.setArcWidth(20);
+						else
+							tmpCast.setArcWidth(0);
+					}
+				}
+			}
+		}
+	}
 
 }
