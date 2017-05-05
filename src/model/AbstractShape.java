@@ -133,7 +133,7 @@ public abstract class AbstractShape implements Shape{
 	
 	@Override
 	public int putId(){
-		id=Controller.id++;
+		id=Controller.id;
 		return id;
 	}
 	

@@ -55,7 +55,7 @@ public class DragAndDrop {
 						Rectangle r = (Rectangle) event.getGestureSource();
 						m.DrawRect((float) r.getWidth(), (float) r.getHeight(), dropPos, (Color) r.getFill());
 						Rectangle newShape = new Rectangle(dropPos.getX(), dropPos.getY(), r.getWidth(), r.getHeight());
-						newShape.setUserData(Controller.id);
+						newShape.setUserData(Controller.id++);
 						newShape.setFill(r.getFill());
 						newShape.setOnMouseDragged(new EventHandler<MouseEvent>() {
 							public void handle(MouseEvent event) {
@@ -98,7 +98,7 @@ public class DragAndDrop {
 										.distance(p.getPoints().get(2), p.getPoints().get(3)),
 								dropPos, (Color) p.getFill());
 						Polygon newShape = new Polygon(tmp.getPoints());
-						newShape.setUserData(Controller.id);
+						newShape.setUserData(Controller.id++);
 						newShape.setFill(p.getFill());
 						newShape.setOnMouseDragged(new EventHandler<MouseEvent>() {
 							public void handle(MouseEvent event) {

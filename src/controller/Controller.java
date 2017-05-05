@@ -86,7 +86,9 @@ public class Controller {
 		});
 
 		m.AddRectToolBar(20, 20, new Point2D((shapePane.getPrefWidth() - 20) / 2, 5), Color.RED);
+		Controller.id++;
 		m.AddPolyToolbar(6, 15, new Point2D((shapePane.getPrefWidth()) / 2, 50), Color.BLUE);
+		Controller.id++;
 
 		refreshShapePane();
 
@@ -117,25 +119,22 @@ public class Controller {
 			}
 		}
 	}
-	
-	/*public void refreshObserver(){
-		refreshDropPane(dropPane);
-	}
 
-	public void refreshDropPane(Pane dropPane) {
-		/*dropPane.getChildren().clear();
-		for (Shape s : m.getGroup().getShapes()) {
-
-			if (s instanceof model.Rectangle) {
-				model.Rectangle r = (model.Rectangle) s;
-				System.out.println(r.getLargeur() + "-" + r.getHauteur() + "-" + r.getPosition().getX() + "-"
-						+ r.getPosition().getY());
-			} else if (s instanceof model.Polygone) {
-				
-			} else {
-				throw new TypeNotPresentException("erreur type de forme dropPane : "+s.getClass(), null);
-			}
-		}
-	}*/
+	/*
+	 * public void refreshObserver(){ refreshDropPane(dropPane); }
+	 * 
+	 * public void refreshDropPane(Pane dropPane) {
+	 * /*dropPane.getChildren().clear(); for (Shape s :
+	 * m.getGroup().getShapes()) {
+	 * 
+	 * if (s instanceof model.Rectangle) { model.Rectangle r = (model.Rectangle)
+	 * s; System.out.println(r.getLargeur() + "-" + r.getHauteur() + "-" +
+	 * r.getPosition().getX() + "-" + r.getPosition().getY()); } else if (s
+	 * instanceof model.Polygone) {
+	 * 
+	 * } else { throw new
+	 * TypeNotPresentException("erreur type de forme dropPane : "+s.getClass(),
+	 * null); } } }
+	 */
 
 }
