@@ -169,7 +169,9 @@ public class ShapeGroup implements Shape {
 	@Override
 	public void setCouleur(Color couleur) {
 		// TODO Auto-generated method stub
-		
+		for (Shape shape : shapes) {
+			shape.setCouleur(couleur);
+		}
 	}
 
 }
