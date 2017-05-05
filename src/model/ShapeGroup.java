@@ -61,15 +61,16 @@ public class ShapeGroup implements Shape {
 	@Override
 	public void rotation(double deg) {
 		// TODO Auto-generated method stub
+		notifier();
 
 	}
 
 	@Override
 	public void translation(Vec2d dir) {
-		// TODO Auto-generated method stub
 		for (Shape shape : shapes) {
 			shape.translation(dir);
 		}
+		notifier();
 	}
 
 	public void addShape(Shape shape) {

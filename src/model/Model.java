@@ -66,6 +66,7 @@ public class Model {
 		originator.setEtat(group);
 		historique.addMemento(originator.save());
 		index++;
+		group.notifier();
 	}
 
 	public void Undo() {
@@ -80,6 +81,7 @@ public class Model {
 		if (index < historique.getTaille()) {
 			index++;
 			group = (ShapeGroup) originator.restaure(historique.getMemento(index));
+			group.notifier();
 		}
 	}
 

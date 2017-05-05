@@ -30,12 +30,14 @@ public abstract class AbstractShape implements Shape{
 
 	public void setPosition(Point2D position) {
 		this.position = position;
+		notifier();
 	}
 
 
 
 	public void setCouleur(Color couleur) {
 		this.couleur = couleur;
+		notifier();
 	}
 
 	public Shape clone(){
@@ -52,6 +54,7 @@ public abstract class AbstractShape implements Shape{
 		if (position.getY() < 0){
 			position.add(0,- position.getY());
 		}
+		notifier();
 	}
 
 	public Color getCouleur(){
@@ -60,7 +63,7 @@ public abstract class AbstractShape implements Shape{
 	
 	@Override
 	public void rotation(double deg) {
-		
+		notifier();
 	}
 
 	@Override
