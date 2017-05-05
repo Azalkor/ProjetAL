@@ -105,10 +105,6 @@ public class Controller {
 				new DragAndDrop(r, dropPane, m);
 			} else if (s instanceof model.Polygone) {
 				model.Polygone pModel = (model.Polygone) s;
-				/*
-				 * for (double d : pModel.getPoints()) { System.out.println(d);
-				 * }
-				 */
 				Polygon p = new Polygon(pModel.getPoints());
 				p.setFill(pModel.getCouleur());
 				shapePane.getChildren().add(p);
@@ -124,41 +120,19 @@ public class Controller {
 	}
 
 	public void refreshDropPane(Pane dropPane) {
-		dropPane.getChildren().clear();
+		/*dropPane.getChildren().clear();
 		for (Shape s : m.getGroup().getShapes()) {
 
 			if (s instanceof model.Rectangle) {
 				model.Rectangle r = (model.Rectangle) s;
 				System.out.println(r.getLargeur() + "-" + r.getHauteur() + "-" + r.getPosition().getX() + "-"
 						+ r.getPosition().getY());
-				Rectangle newShape = new Rectangle(r.getPosition().getX(), r.getPosition().getY(), r.getLargeur(),
-						r.getHauteur());
-				newShape.setFill(r.getCouleur());
-				System.out.println(newShape.getWidth());
-					newShape.setOnMouseDragged(new EventHandler<MouseEvent>() {
-						public void handle(MouseEvent event) {
-							Controller.state = 5;
-							newShape.setX(event.getX());
-							newShape.setY(event.getY());
-						}
-					});
-				dropPane.getChildren().add(newShape);
 			} else if (s instanceof model.Polygone) {
-				model.Polygone p = (model.Polygone) s;
-				Polygon newShape = new Polygon(p.getPoints());
-				newShape.setFill(p.getCouleur());
-					newShape.setOnMouseDragged(new EventHandler<MouseEvent>() {
-						public void handle(MouseEvent event) {
-							Controller.state = 5;
-							newShape.setLayoutX(newShape.getLayoutX() + event.getX());
-							newShape.setLayoutY(newShape.getLayoutY() + event.getY());
-					}
-				});
-				dropPane.getChildren().add(newShape);
+				
 			} else {
-				throw new TypeNotPresentException("erreur type de forme dropPane", null);
+				throw new TypeNotPresentException("erreur type de forme dropPane : "+s.getClass(), null);
 			}
-		}
+		}*/
 	}
 
 }
