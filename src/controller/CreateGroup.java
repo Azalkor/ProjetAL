@@ -108,7 +108,6 @@ public class CreateGroup {
 					selectZone.setOnMousePressed(new EventHandler<MouseEvent>() {
 						public void handle(MouseEvent event) {
 							if (event.getButton() == MouseButton.SECONDARY) {
-								System.out.println("yolo");
 								TextField textField = new TextField("Type Something");
 								final ContextMenu contextMenu = new ContextMenu();
 								MenuItem couleur = new MenuItem("Couleur");
@@ -121,13 +120,11 @@ public class CreateGroup {
 								couleur.setOnAction(new EventHandler<ActionEvent>() {
 									@Override
 									public void handle(ActionEvent event) {
-										System.out.println("kek");
 										final ColorPicker colorPicker1 = new ColorPicker();
 										p.getChildren().add(colorPicker1);
-										System.out.println("TOPKEK");
 										colorPicker1.setOnAction(e -> {
 											Color color = colorPicker1.getValue();
-											System.out.println(color);
+											// System.out.println(color);
 											selectedShapes.setCouleur(color);
 											for (Shape s : selectedShapes.getShapes()) {
 												for (Node n : p.getChildren()) {
@@ -145,7 +142,7 @@ public class CreateGroup {
 								suppr.setOnAction(new EventHandler<ActionEvent>() {
 									@Override
 									public void handle(ActionEvent event) {
-										m.getInstance().getGroup().getShapes().remove(selectedShapes);
+										Model.getInstance().getGroup().getShapes().remove(selectedShapes);
 									}
 								});
 								// ...

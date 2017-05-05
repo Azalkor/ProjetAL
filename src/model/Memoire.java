@@ -26,7 +26,6 @@ public class Memoire {
 	}
 
 	public Memento getMemento(int index) {
-		System.out.println("Etat censé être restauré à l'index" + index );
 		return historique.get(index);
 	}
 
@@ -39,9 +38,9 @@ public class Memoire {
 		Originator origin = new Originator();
 		int cpt = 0;
 		for (Memento memento : historique) {
-			ShapeGroup mdr =  (ShapeGroup) origin.restaure(memento);
+			ShapeGroup sg =  (ShapeGroup) origin.restaure(memento);
 			System.out.println("Memento" + cpt + ":");
-			mdr.liste();
+			sg.liste();
 			
 		}
 	}

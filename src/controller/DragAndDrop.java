@@ -69,7 +69,6 @@ public class DragAndDrop {
 						newShape.setOnMousePressed(new EventHandler<MouseEvent>() {
 							public void handle(MouseEvent event) {
 								if (event.getButton() == MouseButton.SECONDARY) {
-									System.out.println("yolo");
 									TextField textField = new TextField("Type Something");
 									final ContextMenu contextMenu = new ContextMenu();
 									MenuItem couleur = new MenuItem("Couleur");
@@ -82,17 +81,15 @@ public class DragAndDrop {
 									couleur.setOnAction(new EventHandler<ActionEvent>() {
 										@Override
 										public void handle(ActionEvent event) {
-											System.out.println("kek");
 											final ColorPicker colorPicker1 = new ColorPicker(
 													(Color) newShape.getFill());
 											dropPane.getChildren().add(colorPicker1);
-											System.out.println("TOPKEK");
 											colorPicker1.setOnAction(e -> {
 												Color color = colorPicker1.getValue();
-												System.out.println(color);
+												//System.out.println(color);
 												for (model.Shape shape : m.getGroup().getShapes()) {
-													System.out.println("model id : " + shape.getId() + "view id:"
-															+ (int) newShape.getUserData());
+													// System.out.println("model id : " + shape.getId() + "view id:"
+															//+ (int) newShape.getUserData());
 													if (shape.getId() == (int) newShape.getUserData()) {
 														shape.setCouleur(color);
 														newShape.setFill(color);
@@ -107,7 +104,7 @@ public class DragAndDrop {
 										@Override
 										public void handle(ActionEvent event) {
 											dropPane.getChildren().remove(newShape);
-											m.getInstance().getGroup().getShapes().remove(newShape);
+											Model.getInstance().getGroup().getShapes().remove(newShape);
 										}
 									});
 
@@ -118,10 +115,9 @@ public class DragAndDrop {
 												if (shape.getId() == (int) newShape.getUserData()) {
 													model.Rectangle rect = (model.Rectangle) shape;
 													rect.arrondirBords();
-													System.out.println("arrondissage");
+													//System.out.println("arrondissage");
 													if (rect.isBordRond()) {
 														newShape.setArcHeight(20);
-														System.out.println("mdr les bords rond");
 													}
 												}
 											}
@@ -161,7 +157,6 @@ public class DragAndDrop {
 						newShape.setOnMousePressed(new EventHandler<MouseEvent>() {
 							public void handle(MouseEvent event) {
 								if (event.getButton() == MouseButton.SECONDARY) {
-									System.out.println("yolo");
 									TextField textField = new TextField("Type Something");
 									final ContextMenu contextMenu = new ContextMenu();
 									MenuItem couleur = new MenuItem("Couleur");
@@ -173,17 +168,15 @@ public class DragAndDrop {
 									couleur.setOnAction(new EventHandler<ActionEvent>() {
 										@Override
 										public void handle(ActionEvent event) {
-											System.out.println("kek");
 											final ColorPicker colorPicker1 = new ColorPicker(
 													(Color) newShape.getFill());
 											dropPane.getChildren().add(colorPicker1);
-											System.out.println("TOPKEK");
 											colorPicker1.setOnAction(e -> {
 												Color color = colorPicker1.getValue();
-												System.out.println(color);
+												//System.out.println(color);
 												for (model.Shape shape : m.getGroup().getShapes()) {
-													System.out.println("model id : " + shape.getId() + "view id:"
-															+ (int) newShape.getUserData());
+													//System.out.println("model id : " + shape.getId() + "view id:"
+														//	+ (int) newShape.getUserData());
 													if (shape.getId() == (int) newShape.getUserData()) {
 														shape.setCouleur(color);
 														newShape.setFill(color);
@@ -197,7 +190,7 @@ public class DragAndDrop {
 										@Override
 										public void handle(ActionEvent event) {
 											dropPane.getChildren().remove(newShape);
-											m.getInstance().getGroup().getShapes().remove(newShape);
+											Model.getInstance().getGroup().getShapes().remove(newShape);
 										}
 									});
 									// ...

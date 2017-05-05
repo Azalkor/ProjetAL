@@ -1,12 +1,10 @@
 package controller;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
@@ -14,11 +12,6 @@ import javafx.scene.shape.Rectangle;
 import model.Model;
 import model.Shape;
 
-/**
- * View-Controller for the person table.
- * 
- * @author Marco Jakob
- */
 public class Controller {
 
 	Model m;
@@ -100,7 +93,7 @@ public class Controller {
 		shapePane.getChildren().clear();
 		for (Shape s : m.getToolbar().getShapes()) {
 			if (s instanceof model.Rectangle) {
-				System.out.println("first rect");
+				// System.out.println("first rect");
 				model.Rectangle rModel = (model.Rectangle) s;
 				Rectangle r = new Rectangle(rModel.getPosition().getX(), rModel.getPosition().getY(),
 						rModel.getLargeur(), rModel.getHauteur());
@@ -122,31 +115,31 @@ public class Controller {
 	}
 
 	public void refreshObserver() {
-		
+
 		refreshDropPane(dropPane);
 	}
 
 	public void refreshDropPane(Pane dropPane) {
 		for (model.Shape s : m.getGroup().getShapes()) {
-			
-			recur(s,dropPane);
+
+			recur(s, dropPane);
 		}
 	}
-	
-	public void recur(Shape s,Pane dropPane){
+
+	public void recur(Shape s, Pane dropPane) {
 		for (Node sfx : dropPane.getChildren()) {
-			if(sfx instanceof javafx.scene.shape.Shape){
-				javafx.scene.shape.Shape tmp=(javafx.scene.shape.Shape) sfx;
-				if(s.getId()==(int)tmp.getUserData()){
-					if(tmp instanceof Rectangle){
-						model.Rectangle sCast = (model.Rectangle)s;
-						Rectangle tmpCast = (Rectangle)tmp;
+			if (sfx instanceof javafx.scene.shape.Shape) {
+				javafx.scene.shape.Shape tmp = (javafx.scene.shape.Shape) sfx;
+				if (s.getId() == (int) tmp.getUserData()) {
+					if (tmp instanceof Rectangle) {
+						model.Rectangle sCast = (model.Rectangle) s;
+						Rectangle tmpCast = (Rectangle) tmp;
 						tmpCast.setX(sCast.getPosition().getX());
 						tmpCast.setY(sCast.getPosition().getY());
 						tmpCast.setWidth(sCast.getLargeur());
 						tmpCast.setHeight(sCast.getHauteur());
 						tmpCast.setFill(sCast.getCouleur());
-						if(sCast.isBordRond())
+						if (sCast.isBordRond())
 							tmpCast.setArcWidth(20);
 						else
 							tmpCast.setArcWidth(0);
