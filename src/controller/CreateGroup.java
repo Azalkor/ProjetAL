@@ -60,7 +60,7 @@ public class CreateGroup {
 		});
 		p.setOnMouseReleased(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
-				if (event.getButton() == MouseButton.PRIMARY) {
+				if (event.getButton() == MouseButton.PRIMARY && Controller.state==3) {
 					Controller.state = 4;
 					for (Shape s : m.getGroup().getShapes()) {
 						if (selectZone.contains(s.getCentre())) {
@@ -84,7 +84,7 @@ public class CreateGroup {
 							WritableImage wi2 = new WritableImage((int) selectZone.getWidth(),
 									(int) selectZone.getHeight());
 							SnapshotParameters sp = new SnapshotParameters();
-							sp.setViewport(new Rectangle2D(selectZone.getX() + sPane.getPrefWidth(),
+							sp.setViewport(new Rectangle2D(selectZone.getX() + sPane.getPrefWidth()+20,
 									selectZone.getY() + yOffset, 1000, 1000));
 							p.snapshot(sp, wi2);
 							db.setDragView(wi2);
@@ -93,7 +93,7 @@ public class CreateGroup {
 							Rectangle rTest = new Rectangle(wi.getWidth(), wi.getHeight());
 							ImagePattern ip = new ImagePattern(wi);
 							rTest.setFill(ip);
-							sPane.getChildren().add(rTest);
+							//sPane.getChildren().add(rTest);
 							event.consume();
 						}
 					});
