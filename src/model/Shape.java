@@ -16,5 +16,6 @@ public interface Shape {
 	public void addObserveur(IShapeObserver obs);
 	public int putId();
 	public int getId();
+	public Color getCouleur();
 	public void setCouleur(Color couleur);
 }

@@ -178,4 +178,10 @@ public class ShapeGroup implements Shape {
 		}
 	}
 
+	@Override
+	public Color getCouleur() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

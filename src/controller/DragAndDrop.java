@@ -77,7 +77,8 @@ public class DragAndDrop {
 									MenuItem rotation = new MenuItem("Rotation");
 									MenuItem largeur = new MenuItem("Largeur");
 									MenuItem hauteur = new MenuItem("Hauteur");
-									contextMenu.getItems().addAll(couleur, arrondi, rotation, largeur, hauteur);
+									MenuItem suppr = new MenuItem("Supprimer");
+									contextMenu.getItems().addAll(couleur, arrondi, rotation, largeur, hauteur,suppr);
 									couleur.setOnAction(new EventHandler<ActionEvent>() {
 										@Override
 										public void handle(ActionEvent event) {
@@ -99,6 +100,13 @@ public class DragAndDrop {
 												}
 												dropPane.getChildren().remove(colorPicker1);
 											});
+										}
+									});
+									suppr.setOnAction(new EventHandler<ActionEvent>() {
+										@Override
+										public void handle(ActionEvent event) {
+											dropPane.getChildren().remove(newShape);
+											m.getInstance().getGroup().getShapes().remove(newShape);
 										}
 									});
 									// ...
@@ -141,7 +149,8 @@ public class DragAndDrop {
 									MenuItem rotation = new MenuItem("Rotation");
 									MenuItem nbCotes = new MenuItem("Nombre de côtés");
 									MenuItem longueurCotes = new MenuItem("Longueur des côtés");
-									contextMenu.getItems().addAll(couleur, rotation, nbCotes, longueurCotes);
+									MenuItem suppr = new MenuItem("Supprimer");
+									contextMenu.getItems().addAll(couleur, rotation, nbCotes, longueurCotes,suppr);
 									couleur.setOnAction(new EventHandler<ActionEvent>() {
 										@Override
 										public void handle(ActionEvent event) {
@@ -163,6 +172,13 @@ public class DragAndDrop {
 												}
 												dropPane.getChildren().remove(colorPicker1);
 											});
+										}
+									});
+									suppr.setOnAction(new EventHandler<ActionEvent>() {
+										@Override
+										public void handle(ActionEvent event) {
+											dropPane.getChildren().remove(newShape);
+											m.getInstance().getGroup().getShapes().remove(newShape);
 										}
 									});
 									// ...
