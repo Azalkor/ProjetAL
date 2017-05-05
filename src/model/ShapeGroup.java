@@ -13,17 +13,9 @@ public class ShapeGroup implements Shape {
 	private Shape etat;
 	private Rectangle selection;
 	private int id;
+	private Shape parent;
 
-	public void setEtat(Shape etat) {
-		this.etat = etat;
-	}
 
-	public Memento save() {
-		System.out.println("Etat Sauvegardé:\n");
-		ShapeGroup group = (ShapeGroup) etat;
-		group.liste();
-		return new Memento(etat);
-	}
 
 	public Shape restaure(Memento m) {
 		etat = m.getEtat();
@@ -81,6 +73,12 @@ public class ShapeGroup implements Shape {
 	}
 
 	public void addShape(Shape shape) {
+		if(this.parent != null){
+			ShapeGroup tmp = (ShapeGroup)this.getParent();
+			tmp.getShapes().remove(shape);
+			tmp.setShapes(tmp.getShapes());
+		}
+		shape.setParent(this);
 		shapes.add(shape);
 	}
 
@@ -172,10 +170,35 @@ public class ShapeGroup implements Shape {
 
 	@Override
 	public void setCouleur(Color couleur) {
-		// TODO Auto-generated method stub
 		for (Shape shape : shapes) {
 			shape.setCouleur(couleur);
 		}
+	}
+	
+	public void supprimerGroup(){
+		for (Shape shape : shapes) {
+			this.shapes.remove(shape);
+		}
+		parent = null;
+		id =-1;
+	}
+	
+	public void degroup(){
+		for (Shape shape : shapes) {
+			ShapeGroup tmp = (ShapeGroup)this.parent;
+			tmp.addShape(shape);
+		}
+		this.supprimerGroup();
+	}
+
+	@Override
+	public void setParent(Shape s) {
+		parent = s;
+	}
+
+	@Override
+	public Shape getParent() {
+		return this.parent;
 	}
 
 }

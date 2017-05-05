@@ -17,4 +17,6 @@ public interface Shape {
 	public int putId();
 	public int getId();
 	public void setCouleur(Color couleur);
+	public void setParent(Shape s);
+	public Shape getParent();
 }

@@ -101,6 +101,23 @@ public class DragAndDrop {
 											});
 										}
 									});
+									
+									arrondi.setOnAction(new EventHandler<ActionEvent>() {
+										@Override
+										public void handle(ActionEvent event) {
+											for (model.Shape shape : m.getGroup().getShapes()) {
+												if (shape.getId() == (int) newShape.getUserData()) {
+													model.Rectangle rect = (model.Rectangle) shape;
+													rect.arrondirBords();
+													System.out.println("arrondissage");
+													if(rect.isBordRond()){
+														newShape.setArcHeight(20);
+														System.out.println("mdr les bords rond");
+													}
+												}
+											}
+										}
+									});
 									// ...
 									textField.setContextMenu(contextMenu);
 									contextMenu.show(newShape, event.getScreenX(), event.getScreenY());

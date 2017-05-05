@@ -15,6 +15,7 @@ public abstract class AbstractShape implements Shape{
 	protected Point2D centreRotation;
 	protected Color couleur;
 	protected int id;
+	protected Shape parent;
 	
 	public AbstractShape(Point2D position, Color couleur) {
 		this.position = position;
@@ -142,7 +143,14 @@ public abstract class AbstractShape implements Shape{
 		return id;
 	}
 	
+	@Override
+	public void setParent(Shape s) {
+		parent = s;
+	}
 	
-	
+	@Override
+	public Shape getParent() {
+		return this.parent;
+	}
 	
 }
