@@ -15,6 +15,7 @@ public class Polygone extends AbstractShape {
 
 	public void setNbCotes(int nbCotes) {
 		this.nbCotes = nbCotes;
+		notifier();
 	}
 
 	public double getLongueurCotes() {
@@ -23,6 +24,7 @@ public class Polygone extends AbstractShape {
 
 	public void setLongueurCotes(double longueurCotes) {
 		this.longueurCotes = longueurCotes;
+		notifier();
 	}
 	
 	public Polygone(int nbCotes, double longueurCotes, Point2D pos,  Color couleur) {
@@ -35,6 +37,7 @@ public class Polygone extends AbstractShape {
 	public void translation(Vec2d dir) {
 		super.translation(dir);
 		super.centreRotation = super.centreRotation.add(dir.x, dir.y);
+		notifier();
 	}
 
 	public double[] getPoints() {

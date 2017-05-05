@@ -15,6 +15,7 @@ public class Rectangle extends AbstractShape{
 	}
 	public void setLargeur(double largeur) {
 		this.largeur = largeur;
+		notifier();
 	}
 
 	public double getHauteur() {
@@ -22,6 +23,7 @@ public class Rectangle extends AbstractShape{
 	}
 	public void setHauteur(double hauteur) {
 		this.hauteur = hauteur;
+		notifier();
 	}
 	
 	public Rectangle(double largeur, double hauteur, Point2D pos, Color couleur) {
@@ -39,6 +41,7 @@ public class Rectangle extends AbstractShape{
 	
 	public void arrondirBords(){
 		bordsRond = true;
+		notifier();
 	}
 	
 	public void bordDroit(){
