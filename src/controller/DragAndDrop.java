@@ -78,7 +78,7 @@ public class DragAndDrop {
 									MenuItem largeur = new MenuItem("Largeur");
 									MenuItem hauteur = new MenuItem("Hauteur");
 									MenuItem suppr = new MenuItem("Supprimer");
-									contextMenu.getItems().addAll(couleur, arrondi, rotation, largeur, hauteur,suppr);
+									contextMenu.getItems().addAll(couleur, arrondi, rotation, largeur, hauteur, suppr);
 									couleur.setOnAction(new EventHandler<ActionEvent>() {
 										@Override
 										public void handle(ActionEvent event) {
@@ -102,11 +102,30 @@ public class DragAndDrop {
 											});
 										}
 									});
+
 									suppr.setOnAction(new EventHandler<ActionEvent>() {
 										@Override
 										public void handle(ActionEvent event) {
 											dropPane.getChildren().remove(newShape);
 											m.getInstance().getGroup().getShapes().remove(newShape);
+										}
+									});
+
+									arrondi.setOnAction(new EventHandler<ActionEvent>() {
+										@Override
+										public void handle(ActionEvent event) {
+											for (model.Shape shape : m.getGroup().getShapes()) {
+												if (shape.getId() == (int) newShape.getUserData()) {
+													model.Rectangle rect = (model.Rectangle) shape;
+													rect.arrondirBords();
+													System.out.println("arrondissage");
+													if (rect.isBordRond()) {
+														newShape.setArcHeight(20);
+														System.out.println("mdr les bords rond");
+													}
+												}
+											}
+
 										}
 									});
 									// ...
@@ -150,7 +169,7 @@ public class DragAndDrop {
 									MenuItem nbCotes = new MenuItem("Nombre de côtés");
 									MenuItem longueurCotes = new MenuItem("Longueur des côtés");
 									MenuItem suppr = new MenuItem("Supprimer");
-									contextMenu.getItems().addAll(couleur, rotation, nbCotes, longueurCotes,suppr);
+									contextMenu.getItems().addAll(couleur, rotation, nbCotes, longueurCotes, suppr);
 									couleur.setOnAction(new EventHandler<ActionEvent>() {
 										@Override
 										public void handle(ActionEvent event) {
