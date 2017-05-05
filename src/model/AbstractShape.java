@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.sun.javafx.geom.Vec2d;
 
+import controller.Controller;
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 
@@ -12,7 +13,8 @@ public abstract class AbstractShape implements Shape{
 	protected ArrayList<IShapeObserver> observeurs;
 	protected Point2D position;
 	protected Point2D centreRotation;
-	private Color couleur;
+	protected Color couleur;
+	protected int id;
 	
 	public AbstractShape(Point2D position, Color couleur) {
 		this.position = position;
@@ -20,20 +22,14 @@ public abstract class AbstractShape implements Shape{
 		observeurs = new ArrayList<IShapeObserver>();
 	}
 
-	
-
 	public Point2D getPosition() {
 		return position;
 	}
-
-
 
 	public void setPosition(Point2D position) {
 		this.position = position;
 		notifier();
 	}
-
-
 
 	public void setCouleur(Color couleur) {
 		this.couleur = couleur;
@@ -133,6 +129,17 @@ public abstract class AbstractShape implements Shape{
 	
 	public void addObserveur(IShapeObserver obs){
 		observeurs.add(obs);
+	}
+	
+	@Override
+	public int putId(){
+		id=Controller.id++;
+		return id;
+	}
+	
+	@Override
+	public int getId(){
+		return id;
 	}
 	
 	

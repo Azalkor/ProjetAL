@@ -6,7 +6,7 @@ public class ShapeObserver implements IShapeObserver {
 	@Override
 	public void update() {
 		Controller ctrl = Controller.getInstance();
-		ctrl.refreshObserver();
+		//ctrl.refreshObserver();
 	}
 
 	

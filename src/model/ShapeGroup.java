@@ -152,4 +152,17 @@ public class ShapeGroup implements Shape {
 		}
 	}
 
+	@Override
+	public int putId() {
+		for (Shape s : shapes) {
+			s.putId();
+		}
+		return shapes.get(shapes.size()).getId();
+	}
+
+	@Override
+	public int getId() {
+		return -1;
+	}
+
 }
