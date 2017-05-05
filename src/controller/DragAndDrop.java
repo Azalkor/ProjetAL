@@ -82,22 +82,25 @@ public class DragAndDrop {
 										@Override
 										public void handle(ActionEvent event) {
 											System.out.println("kek");
-											final ColorPicker colorPicker1 = new ColorPicker();
+											final ColorPicker colorPicker1 = new ColorPicker(
+													(Color) newShape.getFill());
 											dropPane.getChildren().add(colorPicker1);
 											System.out.println("TOPKEK");
 											colorPicker1.setOnAction(e -> {
-											    Color color = colorPicker1.getValue();
-											    System.out.println(color);
-											    for (model.Shape shape : m.getGroup().getShapes()) {
-											    	System.out.println("model id : " + shape.getId() + "view id:" + (int) newShape.getUserData() );
-													if(shape.getId() == (int) newShape.getUserData()){
+												Color color = colorPicker1.getValue();
+												System.out.println(color);
+												for (model.Shape shape : m.getGroup().getShapes()) {
+													System.out.println("model id : " + shape.getId() + "view id:"
+															+ (int) newShape.getUserData());
+													if (shape.getId() == (int) newShape.getUserData()) {
 														shape.setCouleur(color);
 														newShape.setFill(color);
 													}
 												}
-											    dropPane.getChildren().remove(colorPicker1);
-											    });
-										}});
+												dropPane.getChildren().remove(colorPicker1);
+											});
+										}
+									});
 									// ...
 									textField.setContextMenu(contextMenu);
 									contextMenu.show(newShape, event.getScreenX(), event.getScreenY());
@@ -142,7 +145,24 @@ public class DragAndDrop {
 									couleur.setOnAction(new EventHandler<ActionEvent>() {
 										@Override
 										public void handle(ActionEvent event) {
-											System.out.println("Cut...");
+											System.out.println("kek");
+											final ColorPicker colorPicker1 = new ColorPicker(
+													(Color) newShape.getFill());
+											dropPane.getChildren().add(colorPicker1);
+											System.out.println("TOPKEK");
+											colorPicker1.setOnAction(e -> {
+												Color color = colorPicker1.getValue();
+												System.out.println(color);
+												for (model.Shape shape : m.getGroup().getShapes()) {
+													System.out.println("model id : " + shape.getId() + "view id:"
+															+ (int) newShape.getUserData());
+													if (shape.getId() == (int) newShape.getUserData()) {
+														shape.setCouleur(color);
+														newShape.setFill(color);
+													}
+												}
+												dropPane.getChildren().remove(colorPicker1);
+											});
 										}
 									});
 									// ...
