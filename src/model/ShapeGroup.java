@@ -31,6 +31,7 @@ public class ShapeGroup implements Shape {
 		int x = 0;
 		int y = 0;
 		if (!shapes.isEmpty())
+			System.out.println(shapes.size());
 			for (Shape s : shapes) {
 				x += s.getCentre().getX();
 				y += s.getCentre().getY();

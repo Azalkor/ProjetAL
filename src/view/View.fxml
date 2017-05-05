@@ -24,14 +24,15 @@
       </ToolBar>
    </top>
    <left>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ScrollPane prefHeight="200.0" prefWidth="150.0" BorderPane.alignment="CENTER">
         <content>
-        	<Pane fx:id="shapePane" prefHeight="200.0" prefWidth="200.0">
+        	<Pane fx:id="shapePane" prefHeight="1000.0" prefWidth="130.0">
                <children>
                   	<Button fx:id="buttonDelete" mnemonicParsing="false" text="Delete" />
                </children>
             </Pane>
          </content>
+         
       </ScrollPane>
    </left>
    <center>
