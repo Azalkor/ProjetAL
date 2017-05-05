@@ -1,12 +1,15 @@
 package model;
 
+import java.util.ArrayList;
+
 import com.sun.javafx.geom.Vec2d;
 
 import javafx.geometry.Point2D;
 import javafx.scene.paint.Color;
 
-public class AbstractShape implements Shape{
+public abstract class AbstractShape implements Shape{
 	
+	protected ArrayList<ShapeObserver> observeurs;
 	protected Point2D position;
 	protected Point2D centreRotation;
 	private Color couleur;
@@ -34,8 +37,11 @@ public class AbstractShape implements Shape{
 		this.couleur = couleur;
 	}
 
+	public Shape clone(){
+		throw new UnsupportedOperationException();
+	}
 
-
+	
 	@Override
 	public void translation(Vec2d dir) {
 		position.add(position.getX()+dir.x, position.getY()+dir.y);		
@@ -69,17 +75,9 @@ public class AbstractShape implements Shape{
 	}
 
 
-	@Override
-	public void accept() {
-		// TODO Auto-generated method stub
-		
-	}
 
 
-	@Override
-	public Shape clone() {
-		return new AbstractShape(position, couleur);
-	}
+	
 
 
 
@@ -118,6 +116,15 @@ public class AbstractShape implements Shape{
 		if(this.position.distance(s.getPosition())==0)
 			return 1;
 		return 0;
+	}
+
+
+
+	@Override
+	public void notifier() {
+		for (ShapeObserver observer : observeurs) {
+			observer.update();
+		}
 	}
 	
 	
