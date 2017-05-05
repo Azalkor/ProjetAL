@@ -28,21 +28,17 @@ public class CreateGroup {
 		p.setOnMousePressed(new EventHandler<MouseEvent>() {
 			public void handle(MouseEvent event) {
 				if (event.getButton() == MouseButton.PRIMARY) {
-					if (selectZone != null) {
-						if (!selectZone.contains(new Point2D(event.getX(), event.getY()))) {
-							p.getChildren().remove(selectZone);
-							selectedShapes.getShapes().clear();
-						} else
-							return;
-					}
-					if (!(Controller.state == 5)) {
-						Controller.state = 3;
-						selectZone = new Rectangle(event.getX(), event.getY(), 0, 0);
-						selectZone.setFill(Color.TRANSPARENT);
-						selectZone.setStroke(Color.TRANSPARENT);
-						selectZone.setStrokeWidth(1);
-						selectZone.toFront();
-						p.getChildren().addAll(selectZone);
+					if (selectZone == null || !selectZone.contains(new Point2D(event.getX(), event.getY()))) {
+						if (!(Controller.state == 5)) {
+							Controller.state = 3;
+							selectZone = new Rectangle(event.getX(), event.getY(), 0, 0);
+							selectZone.setFill(Color.TRANSPARENT);
+							selectZone.setStroke(Color.TRANSPARENT);
+							selectZone.setStrokeWidth(1);
+							selectZone.toFront();
+							p.getChildren().addAll(selectZone);
+						}
+
 					}
 				}
 			}
@@ -65,13 +61,17 @@ public class CreateGroup {
 					for (Shape s : m.getGroup().getShapes()) {
 						if (selectZone.contains(s.getCentre())) {
 							selectedShapes.addShape(s);
-							//m.getGroup().getShapes().remove(s);
+							// m.getGroup().getShapes().remove(s);
 						}
 					}
 					if (!selectedShapes.getShapes().isEmpty()) {
 						m.getGroup().addShape(selectedShapes);
-						selectedShapes=new ShapeGroup((float)selectZone.getWidth(), (float)selectZone.getHeight(), new Point2D(selectZone.getX(),selectZone.getY()));
+						selectedShapes = new ShapeGroup((float) selectZone.getWidth(), (float) selectZone.getHeight(),
+								new Point2D(selectZone.getX(), selectZone.getY()));
 						m.getGroup().liste();
+					}
+					else{
+						p.getChildren().remove(selectZone);
 					}
 					selectZone.setOnDragDetected(new EventHandler<MouseEvent>() {
 						public void handle(MouseEvent event) {
