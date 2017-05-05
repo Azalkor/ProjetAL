@@ -23,6 +23,7 @@ public class Controller {
 	Model m;
 	private static Controller instance = null;
 	public static int state = 0;
+	public static int id = 0;
 	// 0 = initial
 	// 1 = on drag une shape
 	// 2 = shape posée
@@ -101,12 +102,14 @@ public class Controller {
 				Rectangle r = new Rectangle(rModel.getPosition().getX(), rModel.getPosition().getY(),
 						rModel.getLargeur(), rModel.getHauteur());
 				r.setFill(rModel.getCouleur());
+				r.setUserData(rModel.getId());
 				shapePane.getChildren().add(r);
 				new DragAndDrop(r, dropPane, m);
 			} else if (s instanceof model.Polygone) {
 				model.Polygone pModel = (model.Polygone) s;
 				Polygon p = new Polygon(pModel.getPoints());
 				p.setFill(pModel.getCouleur());
+				p.setUserData(pModel.getId());
 				shapePane.getChildren().add(p);
 				new DragAndDrop(p, dropPane, m);
 			} else {
@@ -115,7 +118,7 @@ public class Controller {
 		}
 	}
 	
-	public void refreshObserver(){
+	/*public void refreshObserver(){
 		refreshDropPane(dropPane);
 	}
 
@@ -132,7 +135,7 @@ public class Controller {
 			} else {
 				throw new TypeNotPresentException("erreur type de forme dropPane : "+s.getClass(), null);
 			}
-		}*/
-	}
+		}
+	}*/
 
 }

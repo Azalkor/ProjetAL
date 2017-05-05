@@ -13,4 +13,6 @@ public interface Shape {
 	public int egale(Shape s);
 	public void notifier();
 	public void addObserveur(IShapeObserver obs);
+	public int putId();
+	public int getId();
 }

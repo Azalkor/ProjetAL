@@ -41,17 +41,22 @@ public class Model {
 	
 	public void AddRectToolBar(double largeur, double hauteur, Point2D pos, Color couleur){
 		System.out.println("largeur : "+largeur+" hauteur : "+hauteur +" posX : "+pos.getX()+" posY : "+pos.getY() );
-		toolbar.addShape(new Rectangle(largeur, hauteur, pos,  couleur));
+		Rectangle r = new Rectangle(largeur, hauteur, pos,  couleur);
+		r.putId();
+		toolbar.addShape(r);
 		this.ActionPerformed();
 	}
 	
 	public void AddPolyToolbar(int nbCotes,int longueurCotes, Point2D pos, Color couleur) {
-		toolbar.addShape(new Polygone(nbCotes, longueurCotes, pos, couleur));
+		Polygone p =new Polygone(nbCotes, longueurCotes, pos, couleur);
+		p.putId();
+		toolbar.addShape(p);
 		this.ActionPerformed();
 	}
 	
 	public Rectangle DrawRect(double largeur, double hauteur, Point2D pos, Color couleur){
 		Rectangle r =new Rectangle (largeur, hauteur, pos,  couleur);
+		r.putId();
 		group.addShape(r);
 		this.ActionPerformed();
 		return r;
@@ -59,6 +64,7 @@ public class Model {
 	
 	public Polygone DrawPoly(int nbCotes,float longueurCotes, Point2D pos, Color couleur) {
 		Polygone p =new Polygone(nbCotes, longueurCotes, pos, couleur);
+		p.putId();
 		group.addShape(p);
 		this.ActionPerformed();
 		return p;
