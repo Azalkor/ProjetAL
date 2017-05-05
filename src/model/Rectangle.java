@@ -67,10 +67,8 @@ public class Rectangle extends AbstractShape{
 	}
 	
 	public int egale(Rectangle obj) {
-		System.out.println("Appele methode egale RECTANGLE");
 		if(this.hauteur == obj.getHauteur() && this.largeur == obj.getLargeur())
 			return 1;
-		System.out.println("dsl"+ this.hauteur + "pas égale à "+obj.getHauteur()+ "ou "+this.largeur+ "pas égale à" + obj.getLargeur());
 		return 0;
 	}
 	

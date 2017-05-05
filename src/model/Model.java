@@ -40,7 +40,7 @@ public class Model {
 	
 	
 	public void AddRectToolBar(double largeur, double hauteur, Point2D pos, Color couleur){
-		System.out.println("largeur : "+largeur+" hauteur : "+hauteur +" posX : "+pos.getX()+" posY : "+pos.getY() );
+		//System.out.println("largeur : "+largeur+" hauteur : "+hauteur +" posX : "+pos.getX()+" posY : "+pos.getY() );
 		Rectangle r = new Rectangle(largeur, hauteur, pos,  couleur);
 		r.putId();
 		toolbar.addShape(r);
@@ -78,13 +78,13 @@ public class Model {
 	}
 
 	public void Undo() {
-		System.out.println("ShapeGroup Avant:");
-		group.liste();
+		//System.out.println("ShapeGroup Avant:");
+		//group.liste();
 		if (index > 0) {
 			index--;
 			group = (ShapeGroup) group.restaure(historique.getMemento(index));
-			System.out.println("ShapeGroup Avant:");
-			group.liste();
+			//System.out.println("ShapeGroup Avant:");
+			//group.liste();
 		}
 		group.notifier();
 	}

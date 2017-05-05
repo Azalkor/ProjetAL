@@ -117,7 +117,8 @@ public class DragAndDrop {
 													rect.arrondirBords();
 													//System.out.println("arrondissage");
 													if (rect.isBordRond()) {
-														newShape.setArcHeight(20);
+														newShape.setArcHeight(10);
+														newShape.setArcWidth(10);
 													}
 												}
 											}
