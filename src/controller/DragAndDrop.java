@@ -88,6 +88,13 @@ public class DragAndDrop {
 											colorPicker1.setOnAction(e -> {
 											    Color color = colorPicker1.getValue();
 											    System.out.println(color);
+											    for (model.Shape shape : m.getGroup().getShapes()) {
+											    	System.out.println("model id : " + shape.getId() + "view id:" + (int) newShape.getUserData() );
+													if(shape.getId() == (int) newShape.getUserData()){
+														shape.setCouleur(color);
+														newShape.setFill(color);
+													}
+												}
 											    dropPane.getChildren().remove(colorPicker1);
 											    });
 										}});
