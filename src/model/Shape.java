@@ -12,4 +12,5 @@ public interface Shape {
 	public Shape clone();
 	public int egale(Shape s);
 	public void notifier();
+	public void addObserveur(IShapeObserver obs);
 }

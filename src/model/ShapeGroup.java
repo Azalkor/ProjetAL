@@ -7,7 +7,7 @@ import com.sun.javafx.geom.Vec2d;
 import javafx.geometry.Point2D;
 
 public class ShapeGroup implements Shape {
-	private ArrayList<ShapeObserver> observeurs;
+	private ArrayList<IShapeObserver> observeurs;
 	private ArrayList<Shape> shapes;
 	private Shape etat;
 
@@ -55,6 +55,7 @@ public class ShapeGroup implements Shape {
 
 	public ShapeGroup() {
 		shapes = new ArrayList<Shape>();
+		observeurs = new ArrayList<IShapeObserver>();
 	}
 
 	@Override
@@ -130,7 +131,7 @@ public class ShapeGroup implements Shape {
 
 	@Override
 	public void notifier() {
-		for (ShapeObserver observer : observeurs) {
+		for (IShapeObserver observer : observeurs) {
 			observer.update();
 		}
 		for (Shape shape : shapes) {
@@ -143,5 +144,11 @@ public class ShapeGroup implements Shape {
 		throw new UnsupportedOperationException();
 	}
 
+	public void addObserveur(IShapeObserver obs){
+		observeurs.add(obs);
+		for (Shape shape : shapes) {
+			shape.addObserveur(obs);
+		}
+	}
 
 }

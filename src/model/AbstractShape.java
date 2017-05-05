@@ -9,7 +9,7 @@ import javafx.scene.paint.Color;
 
 public abstract class AbstractShape implements Shape{
 	
-	protected ArrayList<ShapeObserver> observeurs;
+	protected ArrayList<IShapeObserver> observeurs;
 	protected Point2D position;
 	protected Point2D centreRotation;
 	private Color couleur;
@@ -17,6 +17,7 @@ public abstract class AbstractShape implements Shape{
 	public AbstractShape(Point2D position, Color couleur) {
 		this.position = position;
 		this.couleur = couleur;
+		observeurs = new ArrayList<IShapeObserver>();
 	}
 
 	
@@ -122,9 +123,13 @@ public abstract class AbstractShape implements Shape{
 
 	@Override
 	public void notifier() {
-		for (ShapeObserver observer : observeurs) {
+		for (IShapeObserver observer : observeurs) {
 			observer.update();
 		}
+	}
+	
+	public void addObserveur(IShapeObserver obs){
+		observeurs.add(obs);
 	}
 	
 	

@@ -30,7 +30,9 @@ public class Model {
 
 	private Model() {
 		group = new ShapeGroup();
+		group.addObserveur(new ShapeObserver());
 		toolbar = new ShapeGroup();
+		toolbar.addObserveur(new ShapeObserver());
 		historique = new Memoire();
 		index = -1;
 		originator = new Originator();
