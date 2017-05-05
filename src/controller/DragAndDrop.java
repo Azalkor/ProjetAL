@@ -67,14 +67,18 @@ public class DragAndDrop {
 											dropPos, (Color) p.getFill());
 						System.out.println(tmp.getPoints());
 						Polygon newShape = new Polygon(tmp.getPoints());
-						//newShape.setLayoutX(dropPos.getX());
-						//newShape.setLayoutY(dropPos.getY());
 						newShape.setFill(p.getFill());
 							newShape.setOnMouseDragged(new EventHandler<MouseEvent>() {
 								public void handle(MouseEvent event) {
 									Controller.state = 5;
-									newShape.setLayoutX(newShape.getLayoutX() + event.getX());
-									newShape.setLayoutY(newShape.getLayoutY() + event.getY());
+									Polygone tmp = new Polygone(newShape.getPoints().size() / 2,
+											(int) new Point2D(newShape.getPoints().get(0), newShape.getPoints().get(1))
+											.distance(newShape.getPoints().get(2), newShape.getPoints().get(3)),
+											new Point2D(event.getX(),event.getY()), (Color) p.getFill());
+									Double[] tab = new Double[tmp.getPoints().length];
+									for(int i=0;i<tmp.getPoints().length;i++)
+										tab[i]=tmp.getPoints()[i];
+									newShape.getPoints().setAll(tab);
 							}
 						});
 						dropPane.getChildren().add(newShape);
