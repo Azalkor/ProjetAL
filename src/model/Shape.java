@@ -3,6 +3,7 @@ package model;
 import com.sun.javafx.geom.Vec2d;
 
 import javafx.geometry.Point2D;
+import javafx.scene.paint.Color;
 
 public interface Shape {
 	public Point2D getPosition();
@@ -15,4 +16,5 @@ public interface Shape {
 	public void addObserveur(IShapeObserver obs);
 	public int putId();
 	public int getId();
+	public void setCouleur(Color couleur);
 }

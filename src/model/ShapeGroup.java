@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.sun.javafx.geom.Vec2d;
 
 import javafx.geometry.Point2D;
+import javafx.scene.paint.Color;
 
 public class ShapeGroup implements Shape {
 	private ArrayList<IShapeObserver> observeurs;
@@ -163,6 +164,12 @@ public class ShapeGroup implements Shape {
 	@Override
 	public int getId() {
 		return -1;
+	}
+
+	@Override
+	public void setCouleur(Color couleur) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
