@@ -37,8 +37,12 @@ public class Memoire {
 	
 	public void list(){
 		Originator origin = new Originator();
+		int cpt = 0;
 		for (Memento memento : historique) {
 			ShapeGroup mdr =  (ShapeGroup) origin.restaure(memento);
+			System.out.println("Memento" + cpt + ":");
+			mdr.liste();
+			
 		}
 	}
 }

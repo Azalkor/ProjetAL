@@ -72,9 +72,13 @@ public class Model {
 	}
 
 	public void Undo() {
+		System.out.println("ShapeGroup Avant:");
+		group.liste();
 		if (index > 0) {
 			index--;
 			group = (ShapeGroup) group.restaure(historique.getMemento(index));
+			System.out.println("ShapeGroup Avant:");
+			group.liste();
 		}
 		group.notifier();
 	}
