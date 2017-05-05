@@ -12,6 +12,7 @@ public class ShapeGroup implements Shape {
 	private ArrayList<Shape> shapes;
 	private Shape etat;
 	private Rectangle selection;
+	private int id;
 
 	public void setEtat(Shape etat) {
 		this.etat = etat;
@@ -58,13 +59,21 @@ public class ShapeGroup implements Shape {
 
 	@Override
 	public void rotation(double deg) {
-		// TODO Auto-generated method stub
+		Point2D oldPos = selection.getPosition();
+		this.selection.rotation(deg);
+		Point2D newPos = selection.getPosition();
+		Vec2d dir = new Vec2d(newPos.getX()-oldPos.getX(), newPos.getY()-oldPos.getY());
+		for (Shape shape : shapes) {
+			shape.translation(dir);
+			shape.rotation(deg);
+		}
 		notifier();
 
 	}
 
 	@Override
 	public void translation(Vec2d dir) {
+		this.selection.translation(dir);
 		for (Shape shape : shapes) {
 			shape.translation(dir);
 		}
@@ -152,21 +161,21 @@ public class ShapeGroup implements Shape {
 
 	@Override
 	public int putId() {
-		for (Shape s : shapes) {
-			s.putId();
-		}
-		return shapes.get(shapes.size()).getId();
+		this.id = controller.Controller.id;
+		return this.id;
 	}
 
 	@Override
 	public int getId() {
-		return -1;
+		return id;
 	}
 
 	@Override
 	public void setCouleur(Color couleur) {
 		// TODO Auto-generated method stub
-		
+		for (Shape shape : shapes) {
+			shape.setCouleur(couleur);
+		}
 	}
 
 }
